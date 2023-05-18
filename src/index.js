@@ -6,7 +6,7 @@ import handlebars from 'express-handlebars';
 import __dirname from './utils/handlebars.js';
 import {Server} from 'socket.io';
 import mongoose from "mongoose";
-import { messageModel } from './dao/models/messagesModels.js';
+import { messageModel } from './models/messagesModels.js';
 import MongoStore from 'connect-mongo';
 import routerSessions from './routes/sessions.js';
 import cookieParser from 'cookie-parser';

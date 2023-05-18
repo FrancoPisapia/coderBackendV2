@@ -69,7 +69,14 @@ class ProductMongooseDao {
         }
     }
 
-    async deleteOne(id){
+    async deleteOne(id)
+    {
+        const productDocument= await productModel.findOne({_id:id})
+
+        if( !productDocument){
+            throw new Error ("Product doesn't exist")
+        }
+        
         return productModel.deleteOne({_id:id})
     }
 

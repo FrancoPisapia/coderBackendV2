@@ -26,7 +26,7 @@ class UserMongooseDao
 
     if(!userDocument)
     {
-      throw new Error('User dont exist.');
+      throw new Error('User doesnt exist.');
     }
 
     return {
