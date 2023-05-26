@@ -14,7 +14,8 @@ class UserMongooseDao
       firstName: document.firstName,
       lastName: document.lastName,
       email: document.email,
-      age: document.age
+      age: document.age,
+      isAdmin: document.isAdmin
     }));
 
     return userDocuments;
@@ -35,7 +36,9 @@ class UserMongooseDao
         lastName: userDocument?.lastName,
         email: userDocument?.email,
         age: userDocument?.age,
-        password: userDocument?.password
+        password: userDocument?.password,
+        isAdmin: userDocument.isAdmin,
+        role: userDocument.role
     }
   }
 
@@ -43,10 +46,6 @@ class UserMongooseDao
   {
     const userDocument = await userModel.findOne({ email });
 
-    // if(!userDocument)
-    // {
-    //   throw new Error('User dont exist.');
-    // }
 
     return {
         id: userDocument?._id,
@@ -54,13 +53,15 @@ class UserMongooseDao
         lastName: userDocument?.lastName,
         email: userDocument?.email,
         age: userDocument?.age,
-        password: userDocument?.password
+        password: userDocument?.password,
+        isAdmin: userDocument?.isAdmin,
+        role: userDocument.role
     }
   }
 
   async create(data)
   {
-    const { firstName, lastName, email, age, password } = data;
+    const { firstName, lastName, email, age, password,isAdmin } = data;
     const hashedPassword = await createHash(password);
     const userDocument = await userModel.create({
         firstName,
@@ -68,8 +69,10 @@ class UserMongooseDao
         email,
         age,
         password: hashedPassword,
+        isAdmin
       });
-    
+
+  
 
     return {
         id: userDocument._id,
@@ -78,6 +81,7 @@ class UserMongooseDao
         email: userDocument.email,
         age: userDocument.age,
         password: userDocument.password,
+        isAdmin:userDocument.isAdmin
     }
   }
 
@@ -95,7 +99,8 @@ class UserMongooseDao
         firstName: userDocument.firstName,
         lastName: userDocument.lastName,
         email: userDocument.email,
-        age: userDocument.age
+        age: userDocument.age,
+        isAdmin: userDocument?.isAdmin
     }
   }
 

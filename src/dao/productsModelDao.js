@@ -80,9 +80,10 @@ class ProductMongooseDao {
         return productModel.deleteOne({_id:id})
     }
 
-    // async addImage(id,data)
+    // async addImageById(id,data)
     // {
-    //     const productDocument = await productModel.findOneAndUpdate({_id:id},data,{new:true})
+    //     const productDocument = await productModel.findOneAndUpdate({ _id: id }, data, { new: true });
+
 
     //     if(!productDocument){
     //         throw new Error ("Product doesn't exist")

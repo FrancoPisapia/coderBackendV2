@@ -15,8 +15,10 @@ export const login = async  (req, res) =>
 
     const manager = new UserManager();
     const user = await manager.getOneByEmail(email);
-    const isHashedPassword = await isValidPassword(password, user.password);
+    const isHashedPassword =isValidPassword(password, user.password);
 
+
+    console.log(isHashedPassword)
     if (!isHashedPassword)
     {
         return res.status(401).send({ message: 'Login failed, invalid password.'})

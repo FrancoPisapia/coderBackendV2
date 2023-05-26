@@ -13,6 +13,7 @@ import cookieParser from 'cookie-parser';
 import session from 'express-session';
 import userRouter from './routes/userRouter.js';
 import errorHandler from './middlewares/errorHandler.js';
+import roleRouter from './routes/roleRouter.js';
 
 
 const app = express();
@@ -67,6 +68,7 @@ app.use('/api/products', productsRouter);
 app.use('/api/carts', cartsRouter);
 app.use('/api/sessions', routerSessions);
 app.use('/api/user',userRouter);
+app.use('/api/roles',roleRouter)
 app.use(errorHandler)
 //app.use('/api/session', routerSession);
 

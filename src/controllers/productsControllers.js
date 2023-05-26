@@ -87,14 +87,16 @@ export const deleteOne = async (req,res,next) =>{
     }
 }
 
-// export const addImage = async (req,res)=>
+// export const addImageById = async (req,res)=>
 // {
 
-//     const {id} = req.params
+//     const {id} = req.params;
+
+//     const file = req.file;
 
 //     const manager = new ProductManager();
 
-//     const result = await manager.addImage(id,'aaa') ;
+//     const result = await manager.addImageById(id,'aaa') ;
 
     
 // }

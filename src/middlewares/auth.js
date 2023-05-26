@@ -3,7 +3,6 @@ import jwt from "jsonwebtoken";
 const PrivateKey = 'CoderTokenFP';
 const auth = (req, res, next) =>
 {
-    const a= []
     const authHeader = req.headers.authorization;
 
     if (!authHeader)

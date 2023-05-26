@@ -1,5 +1,6 @@
-import mongoose from 'mongoose';
+import mongoose, { Schema } from 'mongoose';
 import paginate from "mongoose-paginate-v2";
+import { boolean } from 'zod';
 
 const userCollection = 'users Coder Project-2';
 
@@ -26,13 +27,26 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: true
       },
-      rol:{
-        type:String,
-        default:"User",
-      }
+      role:{
+        type:Schema.Types.ObjectId,
+        index:true,
+        ref:'roles'
+      },
+      isAdmin: { 
+        type: Boolean, 
+        default: false },
     });
 
 userSchema.plugin(paginate);
+
+userSchema.pre('find', function () {
+  this.populate(['role']);
+});
+
+userSchema.pre('findOne', function () {
+  this.populate(['role']);
+});
+
 //Con mongoose model generamos el modelo funcional de usuarios conectados a la base de datos , la parte del cuerpo es el userSchema, pero el userModel refiere a la parte funcional
 const userModel = mongoose.model(userCollection,userSchema);
 

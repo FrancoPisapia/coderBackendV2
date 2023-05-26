@@ -32,10 +32,11 @@ class ProductManager{
         return this.productDao.deleteOne(id)
     }
 
-    async addImage(id)
-    {
-        return this.productDao.addImage(id)
-    }
+    // async addImageById(id,data)
+    // {
+
+    //     return this.productDao.addImageById(id,data)
+    // }
 
 }
 
