@@ -4,9 +4,13 @@ import jwt from "jsonwebtoken";
 
 const PrivateKey = 'CoderTokenFP';
 
-export const createHash = (data) => {
-    const salt = bcrypt.genSaltSync(10); // Generar un salt seguro
-    const hash = bcrypt.hashSync(data, salt); // Generar el hash utilizando la contraseña y el salt
+
+export const createHash = (data, salt) => {
+    if (!data || !salt) {
+      throw new Error('Data and salt arguments are required.');
+    }
+  
+    const hash = bcrypt.hashSync(data, salt);
     return hash;
   };
 

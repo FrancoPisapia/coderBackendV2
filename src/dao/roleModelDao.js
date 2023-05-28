@@ -1,4 +1,4 @@
-import roleModel from "../models/roleModels.js";
+import roleModel from '../models/roleModels.js'
 
 class RoleMongooseDao
 {

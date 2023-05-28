@@ -1,4 +1,7 @@
 import RoleManager from "../managers/roleManager.js";
+import idValidation from "../validations/idValidation.js";
+import roleUpdateValidation from "../validations/roleUpdateValidation.js";
+
 
 export const list = async  (req, res) =>
 {
@@ -10,14 +13,22 @@ export const list = async  (req, res) =>
     res.send({ status: 'success', roles: roles.docs, ...roles, docs: undefined });
 };
 
-export const getOne = async (req, res) =>
+export const getOne = async (req, res,next ) =>
 {
+  try{
+
+    await idValidation.parseAsync(req.params);
     const { id } = req.params;
 
     const manager = new RoleManager();
     const role = await manager.getOne(id);
 
     res.send({ status: 'success', role });
+  }
+  catch (e)
+  {
+    next (e)
+  }
 };
 
 export const save = async (req, res,next) =>
@@ -37,22 +48,40 @@ export const save = async (req, res,next) =>
   }
 };
 
-export const update = async (req, res) =>
+export const update = async (req, res,next) =>
 {
-  const { id } = req.params;
+  try{
 
-  const manager = new RoleManager();
-  const result = await manager.updateOne(id, req.body);
+    await roleUpdateValidation.parseAsync({ ...req.params, ...req.body});
 
-  res.send({ status: 'success', result, message: 'Role updated.' })
+    const { id } = req.params;
+
+    const manager = new RoleManager();
+    const result = await manager.updateOne(id, req.body);
+  
+    res.send({ status: 'success', result, message: 'Role updated.' })
+  }
+  catch(e)
+  {
+    next (e)
+  }
+
 };
 
-export const deleteOne = async (req, res) =>
+export const deleteOne = async (req, res,next) =>
 {
+    try{
+
+    
   const { id } = req.params;
 
   const manager = new RoleManager();
   await manager.deleteOne(id);
 
-  res.send({ status: 'success', message: 'Role deleted.' })
+  res.send({ status: 'success', message: 'Role deleted.' });
+  }
+  catch(e)
+  {
+    next(e)
+  }
 };
