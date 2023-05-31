@@ -1,7 +1,7 @@
 import ProductManager from "../managers/productsManager.js";
 import uploader from "../middlewares/multer.js";
 import idValidation from "../validations/idValidation.js";
-import productUpdateValidation from "../validations/productUpdateValidation.js";
+import productUpdateValidation from "../validations/product/productUpdateValidation.js";
 
 class ProductController
 {

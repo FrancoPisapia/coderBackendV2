@@ -102,7 +102,26 @@ class UserMongooseDao
         lastName: userDocument.lastName,
         email: userDocument.email,
         age: userDocument.age,
-        isAdmin: userDocument?.isAdmin
+        isAdmin: userDocument?.isAdmin,
+        cart: userDocument?.cart,
+    }
+  }
+
+
+  async addCart(id, cartId)
+  {
+    const userDocument = await userModel.findOneAndUpdate(
+      { _id: id },{ cart: cartId  },
+      { new: true }
+    );
+
+    if(!userDocument)
+    {
+      throw new Error('User dont exist.');
+    }
+
+    return {
+        cart: userDocument.cart,
     }
   }
 

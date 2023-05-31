@@ -34,6 +34,11 @@ class UserManager
     return this.userDao.updateOne(id, data);
   }
 
+  async addCart(id, data)
+  {
+    return this.userDao.addCart(id, data);
+  }
+
   async deleteOne(id)
   {
     return this.userDao.deleteOne(id);

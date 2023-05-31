@@ -1,8 +1,8 @@
 import CartManager from "../managers/cartsManager.js";
-import cartUpdateValidation from "../validations/cartUpdateValidation.js";
+import cartUpdateValidation from "../validations/cart/cartUpdateValidation.js";
 import idValidation from "../validations/idValidation.js";
 import idValidationCartProduct from "../validations/idValidationCart-Products.js";
-
+import UserManager from "../managers/userManager.js";
 
 class CartController {
     static list = async  (req, res) =>
@@ -40,9 +40,16 @@ export const createOne= async (req,res,next) =>
     try
     {
     
+    const userManager = new UserManager();
     const manager = new CartManager();
 
     const cart = await manager.createOne();
+
+
+    const userId = req.user.id;
+    
+    // Agregar el ID del carrito al usuario
+    userManager.addCart(userId, cart.id);
 
     res.send ({status:'succeed',cart})
     }

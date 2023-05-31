@@ -17,7 +17,6 @@ import roleRouter from './routes/roleRouter.js';
 import dotenv from "dotenv";
 dotenv.config();
 
-console.log(process.env.MONGO_DB_URI)
 // const app = express();
 
 // app.use(express.urlencoded({extended:true}))

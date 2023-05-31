@@ -1,7 +1,6 @@
 import z from 'zod';
 
-const cartUpdateValidation = z.object({
-  id: z.string().max(24),
+const cartCreateValidation = z.object({
   products: z.array(
     z.object({
       _id: z.string().max(24),
@@ -11,4 +10,4 @@ const cartUpdateValidation = z.object({
 });
 
 
-export default cartUpdateValidation;
+export default cartCreateValidation;

@@ -15,7 +15,7 @@ const productManager = new ProductManager();
 
 routerCart.get('/',CartController.list);
 routerCart.get('/:id',getOne);
-routerCart.post('/',createOne);
+routerCart.post('/',auth,createOne);
 routerCart.post('/:cid/product/:pid',addProduct);
 routerCart.put('/:id',update)
 routerCart.put('/:cid/product/:pid',modifyQuantity);
