@@ -35,6 +35,10 @@ const userSchema = new mongoose.Schema({
       isAdmin: { 
         type: Boolean, 
         default: false },
+      cart:{
+        type: Schema.Types.ObjectId,
+        ref:'cart'
+      }
     });
 
 userSchema.plugin(paginate);
