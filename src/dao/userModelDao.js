@@ -15,7 +15,7 @@ class UserMongooseDao
       lastName: document.lastName,
       email: document.email,
       age: document.age,
-      isAdmin: document.isAdmin
+      isAdmin: document.isAdmin,
     }));
 
     return userDocuments;
@@ -38,7 +38,8 @@ class UserMongooseDao
         age: userDocument?.age,
         password: userDocument?.password,
         isAdmin: userDocument.isAdmin,
-        role: userDocument.role
+        role: userDocument.role,
+        cart:userDocument.cart,
     }
   }
 
@@ -55,7 +56,8 @@ class UserMongooseDao
         age: userDocument?.age,
         password: userDocument?.password,
         isAdmin: userDocument?.isAdmin,
-        role: userDocument.role
+        role: userDocument.role,
+        cart:userDocument.cart,
     }
   }
 
