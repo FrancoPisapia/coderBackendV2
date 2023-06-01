@@ -27,7 +27,7 @@ class UserMongooseDao
 
     if(!userDocument)
     {
-      throw new Error('User doesnt exist.');
+      throw new Error('User Not Found');
     }
 
     return {
@@ -93,7 +93,7 @@ class UserMongooseDao
 
     if(!userDocument)
     {
-      throw new Error('User dont exist.');
+      throw new Error('User Not Found');
     }
 
     return {
@@ -117,7 +117,7 @@ class UserMongooseDao
 
     if(!userDocument)
     {
-      throw new Error('User dont exist.');
+      throw new Error('User Not Found');
     }
 
     return {

@@ -1,7 +1,4 @@
 import CartManager from "../managers/cartsManager.js";
-import cartUpdateValidation from "../validations/cart/cartUpdateValidation.js";
-import idValidation from "../validations/idValidation.js";
-import idValidationCartProduct from "../validations/idValidationCart-Products.js";
 import UserManager from "../managers/userManager.js";
 
 class CartController {
@@ -18,8 +15,6 @@ export const getOne= async (req,res,next) =>
 {
     try
     {
-
-    await idValidation.parseAsync(req.params);
     const {id} = req.params;
 
     const manager = new CartManager();
@@ -64,9 +59,6 @@ export const update= async (req,res,next) =>
 {
     try
     {
-
-    await cartUpdateValidation.parseAsync({...req.params,...req.body});
-
     const {id} = req.params;
 
     const manager = new CartManager();
@@ -87,9 +79,6 @@ export const update= async (req,res,next) =>
 {
     try
     {
-
-    await idValidationCartProduct.parseAsync({...req.params});
-
     const { cid,pid } = req.params;
 
     const manager = new CartManager();
@@ -104,7 +93,11 @@ export const update= async (req,res,next) =>
     }
 };
 
-export const modifyQuantity = async (req, res) => {
+export const modifyQuantity = async (req, res,next) => {
+
+    try{
+
+    
     const { cid, pid } = req.params;
     const { quantity } = req.body;
   
@@ -112,9 +105,18 @@ export const modifyQuantity = async (req, res) => {
     await manager.modifyQuantity(cid, pid, quantity);
   
     res.status(200).json({ success: true });
+    }
+    catch (e)
+    {
+        next (e)
+    }
 }
 
-export const deleteOne = async (req,res) =>{
+export const deleteOne = async (req,res,next) =>{
+
+try {
+
+
     const {id} = req.params
 
     const manager = new CartManager();
@@ -122,10 +124,18 @@ export const deleteOne = async (req,res) =>{
     const result = await manager.deleteOne(id);
 
     res.send({ status: 'success', result, message: 'Cart deleted' })
+    }
+    catch (e)
+    {
+        next (e)
+    }
 }
 
-export const deleteOneProduct = async (req,res) =>
+export const deleteOneProduct = async (req,res,next) =>
 {
+    try{
+
+   
     const { cid,pid } = req.params;
 
     const manager = new CartManager();
@@ -133,6 +143,11 @@ export const deleteOneProduct = async (req,res) =>
     const cart = await manager.deleteOneProduct(cid,pid);
 
     res.send({ status: 'success', cart, message: 'Cart updated' })
+    }
+    catch (e)
+    {
+        next (e)
+    }
 }
 
 

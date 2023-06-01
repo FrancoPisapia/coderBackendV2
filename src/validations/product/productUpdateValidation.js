@@ -1,10 +1,10 @@
 import z from 'zod';
 import idValidation from '../share/idValidation.js';
-import productCreateValidation from '../product/productCreateValidation.js'
+import productCreateValidation from './productCreateValidation.js';
 
-const productUpdateValidation = z.object({
+const productUpdateValidation = z.union([
   idValidation,
   productCreateValidation
-});
+]);
 
 export default productUpdateValidation;

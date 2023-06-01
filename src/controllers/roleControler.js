@@ -1,6 +1,6 @@
 import RoleManager from "../managers/roleManager.js";
-import idValidation from "../validations/idValidation.js";
-import roleUpdateValidation from "../validations/roleUpdateValidation.js";
+
+
 
 
 export const list = async  (req, res) =>
@@ -17,7 +17,7 @@ export const getOne = async (req, res,next ) =>
 {
   try{
 
-    await idValidation.parseAsync(req.params);
+
     const { id } = req.params;
 
     const manager = new RoleManager();
@@ -52,7 +52,6 @@ export const update = async (req, res,next) =>
 {
   try{
 
-    await roleUpdateValidation.parseAsync({ ...req.params, ...req.body});
 
     const { id } = req.params;
 

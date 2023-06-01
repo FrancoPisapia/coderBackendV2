@@ -1,10 +1,8 @@
 import z from 'zod';
-import idValidation from '../share/idValidation.js';
-import cartCreateValidation from '../cart/cartCreateValidation.js'
 
 const cartUpdateValidation = z.object({
-  idValidation,
-  cartCreateValidation
+      id: z.string().length(24),
+      quantity: z.number(),
 });
 
 

@@ -6,40 +6,14 @@ const userCollection = 'users Coder Project-2';
 
 const userSchema = new mongoose.Schema({
     //Propiedades que querramos que tenga el usuario en nuestra base de datos
-    firstName: {
-        type: String,
-        required: true
-      },
-      lastName: {
-        type: String,
-        required: true
-      },
-      email: {
-        type: String,
-        required: true,
-        unique: true
-      },
-      age: {
-        type: Number,
-        required: true
-      },
-      password: {
-        type: String,
-        required: true
-      },
-      role:{
-        type:Schema.Types.ObjectId,
-        index:true,
-        ref:'roles'
-      },
-      isAdmin: { 
-        type: Boolean, 
-        default: false },
-      cart:{
-        type:Schema.Types.ObjectId,
-        index:true,
-        ref:'carts'
-        },
+    firstName:  { type: Schema.Types.String, required: true },
+      lastName:  { type: Schema.Types.String, required: true },
+      email: { type: Schema.Types.String, unique: true, required: true },
+      age: { type: Schema.Types.Number, default: 18 },
+      password: {type: Schema.Types.String,required: true},
+      role:{type:Schema.Types.ObjectId,index:true,ref:'roles'},
+      isAdmin: { type: Schema.Types.Boolean, default: false },
+      cart:{type:Schema.Types.ObjectId,index:true,ref:'carts'},
     });
 
 userSchema.plugin(paginate);
