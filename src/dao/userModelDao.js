@@ -63,16 +63,17 @@ class UserMongooseDao
 
   async create(data)
   {
-    const { firstName, lastName, email, age, password,isAdmin } = data;
-    const hashedPassword = await createHash(password);
-    const userDocument = await userModel.create({
-        firstName,
-        lastName,
-        email,
-        age,
-        password: hashedPassword,
-        isAdmin
-      });
+    const userDocument = await userModel.create(data);
+
+    //const hashedPassword = await createHash(password);
+    // const userDocument = await userModel.create({
+    //     firstName,
+    //     lastName,
+    //     email,
+    //     age,
+    //     password: hashedPassword,
+    //     isAdmin
+    //   });
 
   
 

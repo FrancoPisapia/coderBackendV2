@@ -1,6 +1,5 @@
-import UserManager from "../managers/userManager.js";
-import { createHash} from "../utils/hash.js";
-import { isValidPassword,generateToken } from "../utils/token.js";
+import SessionManager from "../managers/sessionManager.js";
+
 
 
 
@@ -13,7 +12,7 @@ export const login = async  (req, res) =>
         throw new Error('Email and Password invalid format.');
     }
 
-    const manager = new UserManager();
+    const manager = new  SessionManager();
     const user = await manager.getOneByEmail(email);
     const isHashedPassword =isValidPassword(password, user.password);
 
@@ -40,16 +39,18 @@ export const current = async  (req, res) =>
   res.status(200).send({ status: 'Success', payload: req.user });
 };
 
-export const signup = async (req, res) =>
+export const signup = async (req, res, next) =>
 {
-    const manager = new UserManager();
-
-    const dto = {
-      ...req.body,
-      password: await createHash(req.body.password, 10)
-    }
-
-    const user = await manager.create(dto);
+  try
+  {
+    const manager = new SessionManager();
+    const user = await manager.signup(req.body);
 
     res.status(201).send({ status: 'success', user, message: 'User created.' });
+  }
+  catch (e)
+  {
+		next(e);
+	}
 };
+
