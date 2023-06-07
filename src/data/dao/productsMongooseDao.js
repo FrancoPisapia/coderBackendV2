@@ -1,5 +1,5 @@
 import productModel  from "../models/productsModels.js";
-import uploader from "../middlewares/multer.js";
+
 class ProductMongooseDao {
     async find(){
 

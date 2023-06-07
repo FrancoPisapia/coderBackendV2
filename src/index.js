@@ -1,19 +1,21 @@
 import express from 'express'
-import productsRouter from './routes/products.js'
-import cartsRouter from './routes/carts.js';
-import chatRouter from './routes/chat.js';
 import handlebars from 'express-handlebars';
 import __dirname from './utils/handlebars.js';
 import {Server} from 'socket.io';
 import mongoose from "mongoose";
-import { messageModel } from './models/messagesModels.js';
 import MongoStore from 'connect-mongo';
-import routerSessions from './routes/sessions.js';
 import cookieParser from 'cookie-parser';
 import session from 'express-session';
-import userRouter from './routes/userRouter.js';
-import roleRouter from './routes/roleRouter.js';
-import errorHandler from './middlewares/errorHandler.js';
+
+import productsRouter from './presentation/routes/products.js'
+import cartsRouter from './presentation/routes/carts.js';
+import userRouter from './presentation/routes/userRouter.js';
+import roleRouter from './presentation/routes/roleRouter.js';
+import routerSessions from './presentation/routes/sessions.js';
+import chatRouter from './presentation/routes/chat.js';
+
+
+import errorHandler from './presentation/middlewares/errorHandler.js';
 import dotenv from "dotenv";
 dotenv.config();
 

@@ -1,6 +1,8 @@
-import ProductMongooseDao from "../dao/productsModelDao.js";
+import ProductMongooseDao from "../../data/dao/productsMongooseDao.js";
 import productCreateValidation from "../validations/product/productCreateValidation.js";
-import idValidation from '../validations/share/idValidation.js';
+
+import idValidation from "../validations/share/idValidation.js";
+
 import productUpdateValidation from '../validations/product/productUpdateValidation.js';
 
 

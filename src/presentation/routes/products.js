@@ -3,13 +3,12 @@ import express from 'express'
 //import uploader from '../utils/multer.js'
 //import { productsModel } from '../dao/models/productsModels.js';
 import ProductController, { deleteOne, getOne, save, update } from '../controllers/productsControllers.js';
-import uploader from '../middlewares/multer.js';
+import uploader from '../../utils/multer.js';
 
 const app = express();
 const routerProduct = express.Router(); 
 app.use(express.urlencoded({extended:true}))
 
-//const productManager = new ProductManager ();
 
 routerProduct.get('/',ProductController.list);
 routerProduct.get('/:id',getOne)

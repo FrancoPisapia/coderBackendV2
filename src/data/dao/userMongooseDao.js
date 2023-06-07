@@ -1,5 +1,4 @@
 import userModel from "../models/usersModel.js";
-import { createHash } from "../utils/hash.js";
 
 
 class UserMongooseDao
@@ -64,18 +63,6 @@ class UserMongooseDao
   async create(data)
   {
     const userDocument = await userModel.create(data);
-
-    //const hashedPassword = await createHash(password);
-    // const userDocument = await userModel.create({
-    //     firstName,
-    //     lastName,
-    //     email,
-    //     age,
-    //     password: hashedPassword,
-    //     isAdmin
-    //   });
-
-  
 
     return {
         id: userDocument._id,

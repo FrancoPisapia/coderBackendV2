@@ -1,4 +1,4 @@
-import ProductManager from "../managers/productsManager.js";
+import ProductManager from "../../domain/managers/productsManager.js";
 import uploader from "../middlewares/multer.js";
 
 

@@ -1,5 +1,5 @@
 import { Command } from 'commander';
-import UserManager from '../managers/userManager.js';
+import UserManager from '../../domain/managers/userManager.js';
 
 const AddUserCommand = new Command('addUser');
 

@@ -1,5 +1,7 @@
-import UserMongooseDao from "../dao/userModelDao.js";
-import {createHash, generateToken, isValidPassword} from '../utils/token.js'
+import UserMongooseDao from "../../data/dao/userMongooseDao.js";
+
+import {createHash, generateToken, isValidPassword} from '../../utils/token.js';
+
 import userCreateValidation from '../validations/users/userCreateValidation.js'
 import loginValidation from "../validations/sessions/loginValidation.js";
 
@@ -15,6 +17,7 @@ class SessionManager
     await loginValidation.parseAsync({ email, password });
 
     const user = await this.userDao.getOneByEmail(email);
+    
     const isHashedPassword = await isValidPassword(password, user.password);
 
     if (!isHashedPassword)

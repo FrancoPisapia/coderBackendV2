@@ -1,6 +1,8 @@
-import CartMongooseDao from "../dao/cartsModelDao.js";
-import ProductMongooseDao from '../dao/productsModelDao.js';
+import CartMongooseDao from "../../data/dao/cartsMongooseDao.js";
+import ProductMongooseDao from '../../data/dao/productsMongooseDao.js';
+
 import idValidation from "../validations/share/idValidation.js";
+
 import cartUpdateValidation from "../validations/cart/cartUpdateValidation.js";
 import idValidationCartProduct from "../validations/cart/idValidationCart-Products.js";
 import cartModifyQuantityValidation from '../validations/cart/cartModifyQuantity.js'

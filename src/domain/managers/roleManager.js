@@ -1,5 +1,6 @@
-import RoleMongooseDao from "../dao/roleModelDao.js";
+import RoleMongooseDao from "../../data/dao/roleMongooseDao.js";
 import idValidation from "../validations/share/idValidation.js";
+
 import roleCreateValidation from '../validations/roles/roleCreateValidation.js';
 import roleUpdateValidation from '../validations/roles/roleUpdateValidation.js'
 

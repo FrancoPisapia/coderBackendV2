@@ -1,5 +1,4 @@
 import express from 'express'
-import uploader from '../utils/multer.js'
 import { login, current, signup } from "../controllers/sessionController.js";
 import auth from "../middlewares/auth.js"
 

@@ -1,5 +1,6 @@
-import UserMongooseDao from "../dao/userModelDao.js";
-import idValidation from '../validations/share/idValidation.js';
+import UserMongooseDao from "../../data/dao/userMongooseDao.js";
+import idValidation from "../validations/share/idValidation.js";
+
 import userCreateValidation from '../validations/users/userCreateValidation.js'
 import userUpdateValidation from '../validations/users/userUpdateValidation.js'
 
