@@ -1,14 +1,11 @@
 import SessionManager from "../../domain/managers/sessionManager.js";
-import loginValidation from "../../domain/validations/sessions/loginValidation.js";
+
 
 export const login = async  (req, res, next) =>
 {
   try
   {
     const { email, password } = req.body;
-
-    await loginValidation.parseAsync(req.body);
-
     const manager = new SessionManager();
     const accessToken = await manager.login(email, password);
 

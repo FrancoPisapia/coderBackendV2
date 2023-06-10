@@ -17,7 +17,7 @@ class SessionManager
     await loginValidation.parseAsync({ email, password });
 
     const user = await this.userDao.getOneByEmail(email);
-    
+
     const isHashedPassword = await isValidPassword(password, user.password);
 
     if (!isHashedPassword)
