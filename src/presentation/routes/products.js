@@ -3,7 +3,7 @@ import express from 'express'
 //import uploader from '../utils/multer.js'
 //import { productsModel } from '../dao/models/productsModels.js';
 import ProductController, { deleteOne, getOne, save, update } from '../controllers/productsControllers.js';
-import uploader from '../../utils/multer.js';
+import uploader from '../../shared/multer.js';
 
 const app = express();
 const routerProduct = express.Router(); 

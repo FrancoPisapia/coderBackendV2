@@ -1,40 +1,42 @@
-import CartMongooseDao from "../../data/dao/cartsMongooseDao.js";
-import ProductMongooseDao from '../../data/dao/productsMongooseDao.js';
+// import CartMongooseDao from "../../data/repositories/mongoose/cartsMongooseDao.js";
+// import ProductMongooseDao from '../../data/repositories/mongoose/productsMongooseDao.js';
 
 import idValidation from "../validations/share/idValidation.js";
 
 import cartUpdateValidation from "../validations/cart/cartUpdateValidation.js";
 import idValidationCartProduct from "../validations/cart/idValidationCart-Products.js";
-import cartModifyQuantityValidation from '../validations/cart/cartModifyQuantity.js'
+import cartModifyQuantityValidation from '../validations/cart/cartModifyQuantity.js';
+
+import container from "../../container.js";
 
 class CartManager{
     constructor()
     {
-        this.CartDao = new  CartMongooseDao()
-        this.ProductDao = new ProductMongooseDao()
+        this.cartRepository = container.resolve('CartRepository');
+        this.productRepository= container.resolve('ProductRepository');
     }
 
     async find()
     {
 
-        return this.CartDao.find()
+        return this.cartRepository.find()
     }
 
     async getOne(id)
     {
         await idValidation.parseAsync({id})
-        return this.CartDao.getOne(id)
+        return this.cartRepository.getOne(id)
     }
 
     async createOne(data)
     {
-        return this.CartDao.createOne(data)
+        return this.cartRepository.createOne(data)
     }
 
     async updateOne (id,data)
     {
       await cartUpdateValidation.parseAsync({...data,id})
-      return this.CartDao.updateOne(id,data)
+      return this.cartRepository.updateOne(id,data)
     }
 
 
@@ -43,8 +45,8 @@ class CartManager{
 
       await idValidationCartProduct.parseAsync({cid,pid});
 
-      const cart = await this.CartDao.getOne(cid);
-      const product = await this.ProductDao.getOne(pid);
+      const cart = await this.cartRepository.getOne(cid);
+      const product = await this.productRepository.getOne(pid);
 
       const existingProduct = cart.products.find((p) => p._id.equals(pid));
 
@@ -56,7 +58,7 @@ class CartManager{
         cart.products.push({ _id: pid, quantity: 1 });
       }
     
-      await this.CartDao.updateOne(cid, cart);
+      await this.cartRepository.updateOne(cid, cart);
   }
 
 
@@ -66,8 +68,8 @@ class CartManager{
     await cartModifyQuantityValidation.parseAsync({cid,pid,quantity});
 
 
-    const cart = await this.CartDao.getOne(cid);
-    const product = await this.ProductDao.getOne(pid);
+    const cart = await this.cartRepository.getOne(cid);
+    const product = await this.productRepository.getOne(pid);
 
     
   
@@ -77,7 +79,7 @@ class CartManager{
       existingProduct.quantity = quantity;
     }
   
-    await this.CartDao.updateOne(cid, cart);
+    await this.cartRepository.updateOne(cid, cart);
   }
 
 
@@ -89,8 +91,8 @@ class CartManager{
     await idValidationCartProduct.parseAsync({cid,pid});
 
 
-    const cart = await this.CartDao.getOne(cid);
-    const product = await this.ProductDao.getOne(pid);
+    const cart = await this.cartRepository.getOne(cid);
+    const product = await this.productRepository.getOne(pid);
 
     const existingProduct = cart.products.find((p) => p._id.equals(pid));
 
@@ -98,17 +100,17 @@ class CartManager{
     if (existingProduct.quantity >=1) {
       existingProduct.quantity--;
     } else {
-      this.CartDao.deleteOne(cid);
+      this.cartRepository.deleteOne(cid);
     }
   
-    await this.CartDao.updateOne(cid, cart);
+    await this.cartRepository.updateOne(cid, cart);
   }
 
   //Eliminar todo lo del carrito carrito 
   async deleteOne(id)
   {
       await idValidation.parseAsync({id})
-      return this.CartDao.deleteOne(id)
+      return this.cartRepository.deleteOne(id)
   }
 
 

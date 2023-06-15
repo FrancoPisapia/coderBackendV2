@@ -1,10 +1,14 @@
-import cartModel from '../models/cartsModels.js'
+import cartModel from '../../models/mongoose/cartsModels.js'
+import Cart from '../../../domain/entities/cart.js';
+import Product from '../../../domain/entities/product.js';
 
-class CartMongooseDao {
+
+class CartsMongooseRepository {
     async find(){
 
         const cartsDocument = await cartModel.find();
-        return cartsDocument.map(document =>({
+
+        return cartsDocument.map(document =>new Cart({
             id:document._id,
             products:document.products.map(product =>({
                 id:product._id,
@@ -20,20 +24,20 @@ class CartMongooseDao {
             throw new Error ("Cart Not Found")
         }
 
-        return{
-            id:cartDocument._id,
-            products: cartDocument.products,
-        }
+        return new Cart(
+            cartDocument._id,
+            cartDocument.products,
+        )
     }
 
     async createOne(data){
 
         const cartDocument = await cartModel.create(data);
 
-        return{
-            id:cartDocument._id,
-            products: cartDocument.products,
-        }
+        return new Cart(
+            cartDocument._id,
+            cartDocument.products,
+        )
     }
 
     async updateOne(id,data)
@@ -48,12 +52,13 @@ class CartMongooseDao {
             throw new Error ("Cart Not Found")
         }
         
-        return{
-            id: cartDocument._id,
-            products: cartDocument.products.map((product) => ({
-              id: product._id,
-              quantity: product.quantity,
-        }))}
+        return new Cart(
+            cartDocument._id,
+            cartDocument.products.map((product) => new Product(
+              product._id,
+              product.quantity
+            ))
+          );
     }
 
     async modifyQuantity (id,data)
@@ -64,12 +69,13 @@ class CartMongooseDao {
             throw new Error ("cart Not Found")
         }
 
-        return{
-            id: cartDocument._id,
-            products: cartDocument.products.map((product) => ({
-              id: product._id,
-              quantity: product.quantity,
-        }))}
+        return new Cart(
+            cartDocument._id,
+            cartDocument.products.map((product) => new Product(
+              product._id,
+              product.quantity
+            ))
+          );
     }
 
 
@@ -80,4 +86,4 @@ class CartMongooseDao {
     }
 }
 
-export default CartMongooseDao
+export default CartsMongooseRepository;
