@@ -8,7 +8,7 @@ export const createHash = async (password) =>
 
 export const isValidPassword = async (password, passwordHash) =>
 {
-    return  bcrypt.compare(password, passwordHash);
+    return  bcrypt.compare(password,passwordHash);
 }
 
 export const generateToken = async (user) =>

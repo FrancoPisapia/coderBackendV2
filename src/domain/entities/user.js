@@ -1,15 +1,16 @@
 
 class User
 {
-  constructor(props)
+  constructor(id,firstName,lastName,email,age,isAdmin,role,password)
   {
-      this.id = props.id;
-      this.firstName = props.firstName;
-      this.lastName = props.lastName;
-      this.email = props.email;
-      this.age = props.age;
-      this.isAdmin = props.isAdmin;
-      this.role = props.role;
+      this.id = id;
+      this.firstName = firstName;
+      this.lastName = lastName;
+      this.email = email;
+      this.age = age;
+      this.isAdmin = isAdmin;
+      this.password = password;
+      this.role = role;
   }
 }
 

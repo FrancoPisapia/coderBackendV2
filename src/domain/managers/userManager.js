@@ -44,10 +44,10 @@ class UserManager
     return this.userRepository.updateOne(id, data);
   }
 
-  async addCart(id, data)
-  {
-    return this.userRepository.addCart(id, data);
-  }
+  // async addCart(id, data)
+  // {
+  //   return this.userRepository.addCart(id, data);
+  // }
 
   async deleteOne(id)
   {

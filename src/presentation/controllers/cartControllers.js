@@ -44,7 +44,7 @@ export const createOne= async (req,res,next) =>
     const userId = req.user.id;
     
     // Agregar el ID del carrito al usuario
-    userManager.addCart(userId, cart.id);
+    //userManager.addCart(userId, cart.id);
 
     res.send ({status:'succeed',cart})
     }
