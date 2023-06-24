@@ -23,6 +23,11 @@ const errorHandler = (err, req, res, next) =>
       console.log(err.stack);
       return res.status(401).send({ message: 'Email and Password invalid format.'})
   }
+  else if (err?.message.includes('Insufficient stock'))
+  {
+      console.log(err.stack);
+      return res.status(401).send({ message: 'Not enough stock'})
+  }
 
 	console.log(err.stack);
 	res.status(500).json({ message: 'Ocurrió un error' });

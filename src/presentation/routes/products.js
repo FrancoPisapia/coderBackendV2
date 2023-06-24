@@ -13,7 +13,7 @@ app.use(express.urlencoded({extended:true}))
 
 
 routerProduct.get('/',ProductController.list);
-routerProduct.get('/:id',auth,authorization('getProduct'),getOne)
+routerProduct.get('/:id',getOne)
 routerProduct.post('/',auth, authorization('saveProduct'),save)
 routerProduct.put('/:id',auth, authorization('updateProduct'),update)
 routerProduct.delete('/:id',auth, authorization('deleteProduct'),deleteOne)

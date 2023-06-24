@@ -1,6 +1,6 @@
 import mongoose, { Schema } from 'mongoose';
 import paginate from "mongoose-paginate-v2";
-import { boolean } from 'zod';
+
 
 const userCollection = 'users Coder Project-2';
 
