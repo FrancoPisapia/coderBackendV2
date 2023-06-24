@@ -39,9 +39,8 @@ class TicketManager
          {
             const existingProduct = await this.productRepository.getOne(product._id);
             
-           
             if (product.quantity > existingProduct.stock) {
-              throw new Error(`Insufficient stock for product ${existingProduct._id}`);
+              throw new Error(`Insufficient stock for product ${existingProduct.id}`);
             }
 
             existingProduct.stock -= product.quantity;
