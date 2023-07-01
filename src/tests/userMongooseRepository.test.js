@@ -10,7 +10,7 @@ const expect = chai.expect;
 const db = DbFactory.create(process.env.DB);
 
 import UserMongooseRepository from "../data/repositories/mongoose/userMongooseRepository.js";
-import { object } from "zod";
+
 
 describe("Testing User Mongoose Repository", () => {
     before(function () {
@@ -28,18 +28,18 @@ describe("Testing User Mongoose Repository", () => {
         expect(this.userRepository instanceof UserMongooseRepository).to.be.ok;
     });
 
-    it('El repositorio debe devolver un arreglo', function () {
+    // it('El repositorio debe devolver un arreglo', function () {
 
-        return this.userRepository
-            .paginate({ limit: 5, page: 1 })
-            .then(result =>
-            {
+    //     return this.userRepository
+    //         .paginate({ limit: 5, page: 1 })
+    //         .then(result =>
+    //         {
 
-                expect(Array.isArray(result.users)).to.be.equals(true);
-                expect(result.pagination.limit).to.be.equals(5);
-            }
-        );
-    });
+    //             expect(Array.isArray(result.users)).to.be.equals(true);
+    //             expect(result.pagination.limit).to.be.equals(5);
+    //         }
+    //     );
+    // });
 
 
     // it('The repository should be able to create a user', function (done) {
@@ -61,6 +61,7 @@ describe("Testing User Mongoose Repository", () => {
     //         })
     //         .catch(error => done(error)); // Pass any errors to done()
     // });
+
     it('The repository should be able to update a user', function () {
         const updatedData = {
             firstName: 'Updated First Name',

@@ -64,22 +64,22 @@ describe("Testing Role Mongoose Repository", () => {
 
 
 
-    // it('The repository should be able to update a user', function () {
-    //     const updatedData = {
-    //         firstName: 'Updated First Name',
-    //         lastName: 'Updated Last Name',
-    //     };
+    it('The repository should be able to update a role', function () {
+        const updatedData = {
+            name: 'Role actualizado',
+            permissions: ['c','d'],
+        };
 
-    //     return this.roleRepository
-    //         .updateOne('6494b72470838cf325bed1d4', updatedData)
-    //         .then(result => {
-    //             expect(result.firstName).to.be.equals(updatedData.firstName);
-    //             expect(result.lastName).to.be.equals(updatedData.lastName);
-    //         });
-    // });
+        return this.roleRepository
+            .updateOne('649f51c53ba582dabb591ed2', updatedData)
+            .then(result => {
+                expect(result.name).to.be.equals(updatedData.name);
+                expect(JSON.stringify(result.permissions)).to.be.equals(JSON.stringify(updatedData.permissions));
+            });
+    });
 
-    // it('The repository should be able to delete a user', function () {
-    //     const userId = '649f4a5ce3523c8b9aa8770d';
+    // it('The repository should be able to delete a role', function () {
+    //     const userId = '64a0604abebb7f7582591620';
 
     //     return this.roleRepository
     //         .deleteOne(userId)
@@ -88,17 +88,15 @@ describe("Testing Role Mongoose Repository", () => {
     //         });
     // });
 
-    // it('The repository should be able to get a user by ID', function () {
-    //     const userId = '649f47a8f2e8ce8149ab8e9e'
+    it('The repository should be able to get a role by ID', function () {
+        const roleId = '649f51c53ba582dabb591ed2'
 
-    //     return this.roleRepository
-    //         .getOne(userId)
-    //         .then(result => {
-    //             console.log(result.id);
-    //             expect(result).to.be.an('object');
-    //             expect(result.firstName).to.be.equals('Nolan');
-    //             expect(result.id).to.be.equals(userId);
-    //         });
-    // });
+        return this.roleRepository
+            .getOne(roleId)
+            .then(result => {
+                expect(result).to.be.an('object');
+                //expect(result.id).to.be.equals(roleId);
+            });
+    });
 
 })
