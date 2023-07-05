@@ -6,8 +6,8 @@
 
 import mongoose from "mongoose";
 
-import AppFactory from "./presentation/factories/appFactories.js";
-import DbFactory from './data/factories/dbFactory.js'
+import AppFactory from "../presentation/factories/appFactories.js";
+import DbFactory from '../data/factories/dbFactory.js'
 import dotenv from "dotenv";
 dotenv.config();
 

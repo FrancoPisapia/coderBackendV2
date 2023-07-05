@@ -28,39 +28,39 @@ describe("Testing User Mongoose Repository", () => {
         expect(this.userRepository instanceof UserMongooseRepository).to.be.ok;
     });
 
-    // it('El repositorio debe devolver un arreglo', function () {
+    it('El repositorio debe devolver un arreglo', function () {
 
-    //     return this.userRepository
-    //         .paginate({ limit: 5, page: 1 })
-    //         .then(result =>
-    //         {
+        return this.userRepository
+            .paginate({ limit: 5, page: 1 })
+            .then(result =>
+            {
 
-    //             expect(Array.isArray(result.users)).to.be.equals(true);
-    //             expect(result.pagination.limit).to.be.equals(5);
-    //         }
-    //     );
-    // });
+                expect(Array.isArray(result.users)).to.be.equals(true);
+                expect(result.pagination.limit).to.be.equals(5);
+            }
+        );
+    });
 
 
-    // it('The repository should be able to create a user', function (done) {
+    it('The repository should be able to create a user', function (done) {
     
-    //     const user = {
-    //         firstName: faker.person.firstName(),
-    //         lastName: faker.person.lastName(),
-    //         email: faker.internet.email(),
-    //         age: 18,
-    //         isAdmin: false,
-    //         password: 12345678
-    //     };
+        const user = {
+            firstName: faker.person.firstName(),
+            lastName: faker.person.lastName(),
+            email: faker.internet.email(),
+            age: 18,
+            isAdmin: false,
+            password: 12345678
+        };
     
-    //     this.userRepository.create(user)
-    //         .then(result => {
-    //             expect(result.firstName).to.be.equals(user.firstName);
-    //             expect(result.email).to.be.equals(user.email);
-    //             done(); // Call done() to indicate the test has completed
-    //         })
-    //         .catch(error => done(error)); // Pass any errors to done()
-    // });
+        this.userRepository.create(user)
+            .then(result => {
+                expect(result.firstName).to.be.equals(user.firstName);
+                expect(result.email).to.be.equals(user.email);
+                done(); // Call done() to indicate the test has completed
+            })
+            .catch(error => done(error)); // Pass any errors to done()
+    });
 
     it('The repository should be able to update a user', function () {
         const updatedData = {

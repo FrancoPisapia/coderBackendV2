@@ -4,7 +4,8 @@ dotenv.config();
 import { faker } from '@faker-js/faker';
 import DbFactory from "../data/factories/dbFactory.js";
 import chai from "chai";
-
+import mongoose from "mongoose";
+const { ObjectId } = mongoose.Types;
 
 const expect = chai.expect;
 
@@ -34,10 +35,10 @@ describe('Testing Product Mongoose Repository', () => {
     });
   
     it('The repository should be able to create a product', function () {
-      const product = {
+     const product = {
         title: 'Test Product',
         description: 'This is a test product',
-        code: '123456',
+        code: '1234567',
         price: 10.99,
         stock: 100,
         category: 'Test',
@@ -58,24 +59,26 @@ describe('Testing Product Mongoose Repository', () => {
         });
     });
 
+
     it('The repository should be able to update a product', function () {
-        const productId = '64a067741aee0989378eda1a';
-        const updatedData = {
-          title: 'Updated Test Product',
-          description: 'This is an updated test product',
-        };
-    
-        return this.productRepository
-          .updateOne(productId, updatedData)
-          .then(result => {
-            expect(result).to.be.an('object');
-            expect(result.title).to.equal(updatedData.title);
-            expect(result.description).to.equal(updatedData.description);
-          });
-      });
+
+      const productId = '64a4ad8dd63cfecac107a36d';
+      const updatedData = {
+        title: 'Updated Test Product',
+        description: 'This is an updated test product',
+      };
+  
+      return this.productRepository
+        .updateOne(productId, updatedData)
+        .then(result => {
+          expect(result).to.be.an('object');
+          expect(result.title).to.equal(updatedData.title);
+          expect(result.description).to.equal(updatedData.description);
+        });
+    });
 
       it('The repository should be able to delete a product', function () {
-        const productId = '64a067741aee0989378eda1a'; // Reemplaza con el ID de un producto existente en tu base de datos
+        const productId = '64a4b6a6cc9be2e1b6a99222'; // Reemplaza con el ID de un producto existente en tu base de datos
     
         return this.productRepository
           .deleteOne(productId)
