@@ -10,7 +10,7 @@ class UserManager
 {
   constructor()
   {
-     this.userRepository = container.resolve('UserRepository')
+    this.userRepository = container.resolve('UserRepository');
   }
 
   async paginate(criteria)

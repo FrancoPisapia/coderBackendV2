@@ -43,10 +43,12 @@ class AppExpress
     listen()
     {
         {
-            return this.app.listen(process.env.NODE_PORT, () => {
-              console.log(`Server listening on port ${process.env.NODE_PORT}`);
+            this.server = this.app.listen(process.env.NODE_PORT, () => {
+            console.log(`Server listening on port ${process.env.NODE_PORT}`);
             });
-          }
+            
+            return this.server;
+        }
     }
 }
 

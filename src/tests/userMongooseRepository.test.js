@@ -18,8 +18,10 @@ describe("Testing User Mongoose Repository", () => {
         this.userRepository = new UserMongooseRepository();
     });
     after(function () {
+
         db.drop();
         db.close();
+        
     });
     beforeEach(function () {
         this.timeout(5000);

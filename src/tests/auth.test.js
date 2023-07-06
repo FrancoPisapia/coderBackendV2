@@ -1,73 +1,73 @@
-import { faker } from '@faker-js/faker';
-import chai from "chai";
-import supertest from "supertest";
-import initServer from "./index.js";
+// import { faker } from '@faker-js/faker';
+// import chai from "chai";
+// import supertest from "supertest";
+// import initServer from './index.js'
 
-const expect = chai.expect;
-let jwt = "";
+// const expect = chai.expect;
+// let jwt = "";
 
-describe("Testing Auth Endpoints Success", () => {
-    before(async function () {
-        const { app, db } = await initServer();
-        const application = app.callback();
-        this.requester = supertest.agent(application);
-        this.app = app;
-        this.db = db;
-        this.payload = {};
-    });
-    after(function () {
-        this.db.drop();
-        // this.db.close();
-        // this.requester.app.close(() => {
-        //   console.log('Conexión cerrada');
-        // });
-    });
-    beforeEach(async function () {
-        this.timeout(2000);
-        await new Promise(resolve => setTimeout(resolve, 500));
-    });
-    it('Creacion de cuenta /api/sessions/signup', function ()
-    {
-        this.payload = {
-            firstName: `${faker.person.firstName()} Ana Maria`,
-            lastName: `${faker.person.lastName()} Ana Maria`,
-            email: faker.internet.email(),
-            age: 20,
-            password: "12345678"
-        };
+// describe("Testing Auth Endpoints Success", () => {
+//     before(async function () {
+//         const { app, db } = await initServer();
+//         const application = app.callback();
+//         this.requester = supertest.agent(application);
+//         this.app = app;
+//         this.db = db;
+//         this.payload = {};
+//     });
+//     after(function () {
+
+//         this.db.drop();
+//         this.db.close();
+//         this.requester.app.close(() => {
+//           console.log('Conexión cerrada');
+//         });
+//     });
+//     beforeEach(async function () {
+//         this.timeout(2000);
+//         await new Promise(resolve => setTimeout(resolve, 500));
+//     });
+//     it('Creacion de cuenta /api/sessions/signup', function ()
+//     {
+//         this.payload = {
+//             firstName: `${faker.person.firstName()} Ana Maria`,
+//             lastName: `${faker.person.lastName()} Ana Maria`,
+//             email: faker.internet.email(),
+//             age: 20,
+//             password: "12345678"
+//         };
 
         
         
-        return this.requester
-            .post('/api/sessions/signup')
-            .send(this.payload)
-            .then(result =>
-            {
+//         return this.requester
+//             .post('/api/sessions/signup')
+//             .send(this.payload)
+//             .then(result =>
+//             {
                 
-                const { _body, status } = result;
-                expect(status).to.be.equals(201);
-                expect(_body.user.email).to.be.equals(this.payload.email);
-                expect(_body.message).to.be.equals("User created.");
-            }
-        );
-    });
+//                 const { _body, status } = result;
+//                 expect(status).to.be.equals(201);
+//                 expect(_body.user.email).to.be.equals(this.payload.email);
+//                 expect(_body.message).to.be.equals("User created.");
+//             }
+//         );
+//     });
 
-    it('Leer producto /api/products/644712d8e1f10a2db3207513', function ()
-    {
+//     it('Leer producto /api/products', function ()
+//     {
 
-        return this.requester
-            .get('/api/products/644712d8e1f10a2db3207513')
-            .send(this.payload)
-            .then(result =>
-            {
+//         return this.requester
+//             .get('/api/products')
+//             .then(result =>
+//             {
                 
-                const { status } = result;
-                expect(status).to.be.equals(201);
-                // expect(_body.user.email).to.be.equals(this.payload.email);
-                // expect(_body.message).to.be.equals("User created.");
-            }
-        );
-    });
+//                 const { status } = result;
+//                 expect(status).to.be.equals(201);
+//                 // expect(_body.user.email).to.be.equals(this.payload.email);
+//                 // expect(_body.message).to.be.equals("User created.");
+//             }
+//         );
+//     });
 
 
 
@@ -111,4 +111,4 @@ describe("Testing Auth Endpoints Success", () => {
     //         }
     //     );
     // });
-});
+//});

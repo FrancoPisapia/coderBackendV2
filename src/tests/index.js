@@ -4,14 +4,11 @@
 // import {Server} from 'socket.io';
 // import cookieParser from 'cookie-parser';
 
-import mongoose from "mongoose";
 
-import AppFactory from "../presentation/factories/appFactories.js";
+import AppFactory from "../presentation/factories/appFactories.js"
 import DbFactory from '../data/factories/dbFactory.js';
 import dotenv from "dotenv";
 dotenv.config();
-
-
 
 
 const initServer = async() =>
