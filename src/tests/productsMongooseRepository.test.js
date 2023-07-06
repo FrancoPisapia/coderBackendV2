@@ -23,7 +23,7 @@ describe('Testing Product Mongoose Repository', () => {
   
     after(function () {
       db.drop();
-      db.close();
+      //db.close();
     });
   
     beforeEach(function () {

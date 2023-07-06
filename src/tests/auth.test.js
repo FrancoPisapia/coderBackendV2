@@ -17,10 +17,10 @@ describe("Testing Auth Endpoints Success", () => {
     });
     after(function () {
         this.db.drop();
-        this.db.close();
-        this.requester.app.close(() => {
-          console.log('Conexión cerrada');
-        });
+        // this.db.close();
+        // this.requester.app.close(() => {
+        //   console.log('Conexión cerrada');
+        // });
     });
     beforeEach(async function () {
         this.timeout(2000);
@@ -48,6 +48,23 @@ describe("Testing Auth Endpoints Success", () => {
                 expect(status).to.be.equals(201);
                 expect(_body.user.email).to.be.equals(this.payload.email);
                 expect(_body.message).to.be.equals("User created.");
+            }
+        );
+    });
+
+    it('Leer producto /api/products/644712d8e1f10a2db3207513', function ()
+    {
+
+        return this.requester
+            .get('/api/products/644712d8e1f10a2db3207513')
+            .send(this.payload)
+            .then(result =>
+            {
+                
+                const { status } = result;
+                expect(status).to.be.equals(201);
+                // expect(_body.user.email).to.be.equals(this.payload.email);
+                // expect(_body.message).to.be.equals("User created.");
             }
         );
     });
