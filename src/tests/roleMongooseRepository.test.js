@@ -14,7 +14,7 @@ import RoleMongooseRepository from "../data/repositories/mongoose/roleMongooseRe
 
 describe("Testing Role Mongoose Repository", () => {
     before(function () {
-        db.init("mongodb+srv://francopisapia405:uPTbiSDQYTlKc3wm@codercluster.xlmgp1b.mongodb.net/?retryWrites=true&w=majority");
+        db.init(process.env.MONGO_DB_URI);
         this.roleRepository = new RoleMongooseRepository();
     });
     after(function () {
@@ -28,36 +28,35 @@ describe("Testing Role Mongoose Repository", () => {
         expect(this.roleRepository instanceof RoleMongooseRepository).to.be.ok;
     });
 
-    // it('El repositorio debe devolver un arreglo', function () {
+    it('El repositorio debe devolver un arreglo', function () {
 
-    //     return this.roleRepository
-    //         .paginate({ limit: 5, page: 1 })
-    //         .then(result =>
-    //         {
-
-    //             expect(Array.isArray(result.role)).to.be.equals(true);
-    //             expect(result.pagination.limit).to.be.equals(5);
-    //         }
-    //     );
-    // });
+        return this.roleRepository
+            .paginate({ limit: 5, page: 1 })
+            .then(result =>
+            {   
+                expect(Array.isArray(result.roles)).to.be.equals(true);
+                expect(result.pagination.limit).to.be.equals(5);
+            }
+        );
+    });
 
 
     //*****ESTE ANDA ******/
 
-    // it('The repository should be able to create a role', function (done) {
+    it('The repository should be able to create a role', function (done) {
     
-    //     const role = {
-    //         name: 'algo',
-    //         permissions: ['a','b'],
-    //     };
+        const role = {
+            name: 'algo',
+            permissions: ['a','b'],
+        };
     
-    //     this.roleRepository.create(role)
-    //         .then(result => {
-    //             expect(result.name).to.be.equals(role.name);
-    //             done(); 
-    //         })
-    //         .catch(error => done(error)); // Pass any errors to done()
-    // });
+        this.roleRepository.create(role)
+            .then(result => {
+                expect(result.name).to.be.equals(role.name);
+                done(); 
+            })
+            .catch(error => done(error)); // Pass any errors to done()
+    });
 
 
 
@@ -71,31 +70,33 @@ describe("Testing Role Mongoose Repository", () => {
         };
 
         return this.roleRepository
-            .updateOne('649f51c53ba582dabb591ed2', updatedData)
+            .updateOne('64a88fff3f792071ab5396b5', updatedData)
             .then(result => {
                 expect(result.name).to.be.equals(updatedData.name);
                 expect(JSON.stringify(result.permissions)).to.be.equals(JSON.stringify(updatedData.permissions));
             });
     });
 
-    // it('The repository should be able to delete a role', function () {
-    //     const userId = '64a0604abebb7f7582591620';
+    it('The repository should be able to delete a role', function () {
+        const userId = '64a0604abebb7f7582591620';
 
-    //     return this.roleRepository
-    //         .deleteOne(userId)
-    //         .then(result => {
-    //             expect(result.acknowledged).to.be.equals(true);
-    //         });
-    // });
+        return this.roleRepository
+            .deleteOne(userId)
+            .then(result => {
+                expect(result.acknowledged).to.be.equals(true);
+            });
+    });
 
     it('The repository should be able to get a role by ID', function () {
-        const roleId = '649f51c53ba582dabb591ed2'
+        const roleId = '6494b9ec1405764b428f7a97'
 
         return this.roleRepository
             .getOne(roleId)
             .then(result => {
+                const { id } = result;
+                const idAsString = id.toString();
+                expect(idAsString).to.be.equals(roleId);
                 expect(result).to.be.an('object');
-                //expect(result.id).to.be.equals(roleId);
             });
     });
 

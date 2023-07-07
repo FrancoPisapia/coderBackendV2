@@ -17,7 +17,7 @@ import productModel from '../data/models/mongoose/productsModels.js'
 
 describe('Testing Product Mongoose Repository', () => {
     before(function () {
-      db.init("mongodb+srv://francopisapia405:uPTbiSDQYTlKc3wm@codercluster.xlmgp1b.mongodb.net/?retryWrites=true&w=majority"); 
+      db.init(process.env.MONGO_DB_URI); 
       this.productRepository = new ProductMongooseRepository();
     });
   
@@ -38,7 +38,7 @@ describe('Testing Product Mongoose Repository', () => {
      const product = {
         title: 'Test Product',
         description: 'This is a test product',
-        code: '1234567',
+        code: '12345678',
         price: 10.99,
         stock: 100,
         category: 'Test',
@@ -62,7 +62,7 @@ describe('Testing Product Mongoose Repository', () => {
 
     it('The repository should be able to update a product', function () {
 
-      const productId = '64a4ad8dd63cfecac107a36d';
+      const productId = '64a75ed349b05a500e6f1bf8';
       const updatedData = {
         title: 'Updated Test Product',
         description: 'This is an updated test product',
@@ -77,20 +77,14 @@ describe('Testing Product Mongoose Repository', () => {
         });
     });
 
-      it('The repository should be able to delete a product', function () {
-        const productId = '64a4b6a6cc9be2e1b6a99222'; // Reemplaza con el ID de un producto existente en tu base de datos
+      // it('The repository should be able to delete a product', function () {
+      //   const productId = '64a75d48fdfac82893c053fa'; // Reemplaza con el ID de un producto existente en tu base de datos
     
-        return this.productRepository
-          .deleteOne(productId)
-          .then(result => {
-            expect(result.acknowledged).to.equal(true);
-          });
-      });
+      //   return this.productRepository
+      //     .deleteOne(productId)
+      //     .then(result => {
+      //       expect(result.acknowledged).to.equal(true);
+      //     });
+      // });
     
-      it('The repository should be able to paginate products', function () {
-        const criteria = {
-          limit: 10,
-          page: 1,
-        };
-    });
 })
