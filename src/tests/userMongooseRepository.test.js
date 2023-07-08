@@ -73,11 +73,9 @@ describe("Testing User Mongoose Repository", () => {
             lastName: 'Updated Last Name',
         };
 
-        console.log('DB_URL:', process.env.MONGO_DB_URI);
-        console.log('DB:', process.env.DB);
 
         return this.userRepository
-            .updateOne('64a75d6e6ed8fe37f059ef9b', updatedData)
+            .updateOne('64a9a5d04c0f01b4b01fae9d', updatedData)
             .then(result => {
                 expect(result.firstName).to.be.equals(updatedData.firstName);
                 expect(result.lastName).to.be.equals(updatedData.lastName);
@@ -85,7 +83,7 @@ describe("Testing User Mongoose Repository", () => {
     });
 
     it('The repository should be able to delete a user', function () {
-        const userId = '64a75d6e6ed8fe37f059ef9b';
+        const userId = '64a9aaed1409f0f864984766';
 
         return this.userRepository
             .deleteOne(userId)
@@ -95,14 +93,18 @@ describe("Testing User Mongoose Repository", () => {
     });
 
     it('The repository should be able to get a user by ID', function () {
-        const userId = '64a75d4bfdfac82893c05407'
+        const userId = '64a9a5d04c0f01b4b01fae9d'
 
         return this.userRepository
             .getOne(userId)
             .then(result => {
+                const { id } = result;
+                const idAsString = id.toString();
+                
                 expect(result).to.be.an('object');
-                expect(result.firstName).to.be.equals('Devon');
-                //expect(result.id).to.be.equals(userId);
+                expect(idAsString).to.be.equals(userId);
+                
+                
             });
     });
 

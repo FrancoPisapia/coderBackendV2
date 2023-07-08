@@ -8,8 +8,8 @@ class User
       this.lastName = lastName;
       this.email = email;
       this.age = age;
-      this.isAdmin = isAdmin;
       this.password = password;
+      this.isAdmin = isAdmin;
       this.role = role;
   }
 }

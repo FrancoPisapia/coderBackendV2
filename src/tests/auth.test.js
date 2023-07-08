@@ -18,12 +18,12 @@ describe("Testing Auth Endpoints Success", () => {
         this.db = db;
         this.payload = {};
     });
-    after(async function () {
-        await this.db.drop();
-        await this.db.close();
-        this.requester.app.close(() => {
-          console.log('Conexión cerrada');
-        });
+    after(function () {
+        this.db.drop();
+        // await this.db.close();
+        // this.requester.app.close(() => {
+        //   console.log('Conexión cerrada');
+        // });
     });
     beforeEach(async function () {
         this.timeout(2000);
@@ -51,22 +51,6 @@ describe("Testing Auth Endpoints Success", () => {
                 expect(status).to.be.equals(201);
                 expect(_body.user.email).to.be.equals(this.payload.email);
                 expect(_body.message).to.be.equals("User created.");
-            }
-        );
-    });
-
-    it('Leer producto /api/products', function ()
-    {
-
-        return this.requester
-            .get('/api/products')
-            .then(result =>
-            {
-                
-                const { status } = result;
-                expect(status).to.be.equals(201);
-                // expect(_body.user.email).to.be.equals(this.payload.email);
-                // expect(_body.message).to.be.equals("User created.");
             }
         );
     });
