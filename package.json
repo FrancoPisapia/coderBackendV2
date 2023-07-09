@@ -27,7 +27,7 @@
   "main": "src/index.js",
   "scripts": {
     "start": "nodemon",
-    "test": "mocha src/tests/roleMongooseRepository.test.js",
+    "test": "mocha src/tests/*.test.js",
     "command": "node src/command.js"
   },
   "repository": {
