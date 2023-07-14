@@ -28,7 +28,8 @@
   "scripts": {
     "start": "nodemon",
     "test": "mocha src/tests/*.test.js",
-    "command": "node src/command.js"
+    "command": "node src/command.js",
+    "cluster": "pm2 start src/index.js -i 2"
   },
   "repository": {
     "type": "git",
