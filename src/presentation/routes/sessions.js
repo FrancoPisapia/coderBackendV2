@@ -1,5 +1,5 @@
 import express from 'express'
-import { login, current, signup } from "../controllers/sessionController.js";
+import { login, current, signup, forgotPassword, changePassword } from "../controllers/sessionController.js";
 import auth from "../middlewares/auth.js"
 
 
@@ -15,6 +15,8 @@ app.use(express.urlencoded({extended:true}));
 routerSessions.post('/login', login);
 routerSessions.get('/current', auth, current);
 routerSessions.post('/signup', signup);
+routerSessions.post('/password', forgotPassword);
+routerSessions.put('/password', auth, changePassword);
 
 export default routerSessions;
 

@@ -1,5 +1,5 @@
 import SessionManager from "../../domain/managers/sessionManager.js";
-
+import { sendMailPassword } from "../../shared/mailPassword.js";
 
 export const login = async  (req, res, next) =>
 {
@@ -41,5 +41,35 @@ export const signup = async (req, res, next) =>
   {
 		next(e);
 	}
+
 };
+
+export const forgotPassword = async (req, res, next) => {
+  try {
+    const { email } = req.body;
+    const manager = new SessionManager();
+    const accessToken = await manager.forgotPassword(email);
+    sendMailPassword(email,accessToken)
+
+    res.status(200).json({message:`Token enviado al mail`,accessToken});
+  } catch (e) {
+    next(e);
+  }
+};
+
+export const changePassword = async (req, res, next) => {
+  try {
+    const { email, password } = req.body;
+
+
+    const manager = new SessionManager();
+    const result = await manager.changePassword(email, password);
+
+    res.status(200).json({ message: 'Password changed successfully',result});
+  } catch (e) {
+    next(e);
+  }
+};
+
+
 

@@ -57,8 +57,9 @@ export const save = async (req,res,next) =>{
     try{
 
     const manager = new ProductManager();
-
-    const product = await manager.create(req.body);
+    const email = req.user.email
+    const product = await manager.create(req.body,email);
+    
 
     res.send ({status:'succeed',product, message:'Product created'});
     }
@@ -78,6 +79,8 @@ export const update = async ( req,res,next)=>{
         const manager = new ProductManager();
     
         const result = await manager.updateOne(id, req.body);
+
+
     
         res.send({ status: 'success', result, message: 'Product updated' })
     }
@@ -97,9 +100,15 @@ export const deleteOne = async (req,res,next) =>{
 
     const manager = new ProductManager();
 
-    const result = await manager.deleteOne(id);
+    const existingProduct = await manager.getOne(id);
 
-    res.send({ status: 'success', result, message: 'Product deleted' });
+
+    if (req.user.role === 'admin' || existingProduct.owner === req.user.email) {
+        const result = await manager.deleteOne(id);
+        res.send({ status: 'success', result, message: 'Product deleted' });
+      } else {
+        throw new Error('Unauthorized: You do not have permission to delete this product');
+      }
     }
     catch (e)
     {

@@ -18,14 +18,14 @@ const userSchema = new mongoose.Schema({
 
 userSchema.plugin(paginate);
 
-// userSchema.pre('find', function () {
-//   this.populate(['role']);
-// });
+userSchema.pre('find', function () {
+  this.populate(['role']);
+});
 
-// userSchema.pre('findOne', function () {
-//   this.populate(['role'])
-//   this.populate(['cart'])
-// });
+userSchema.pre('findOne', function () {
+  this.populate(['role'])
+  //this.populate(['cart'])
+});
 
 
 //Con mongoose model generamos el modelo funcional de usuarios conectados a la base de datos , la parte del cuerpo es el userSchema, pero el userModel refiere a la parte funcional

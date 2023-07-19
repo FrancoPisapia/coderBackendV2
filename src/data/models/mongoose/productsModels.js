@@ -12,7 +12,8 @@ const productsSchema = new mongoose.Schema({
     price:{type:Schema.Types.Number,require:true},
     stock:{type:Schema.Types.Number,require:true},
     category:{type: Schema.Types.String,require:true},
-    thumbnail:{type: Schema.Types.String}
+    thumbnail:{type: Schema.Types.String},
+    owner: { type: String, ref: 'User', default: 'admin' }
 
     
 });

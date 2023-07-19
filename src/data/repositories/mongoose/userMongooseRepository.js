@@ -103,10 +103,28 @@ class UserMongooseRepository
     );
   }
 
+  async updatePasswordByEmail(email, password)
+  {
+    const userDocument = await userModel.findOneAndUpdate(
+      { email: email },
+      { password: password },
+      { new: true }
+    );
+
+    if(!userDocument)
+    {
+      throw new Error('User dont exist.');
+    }
+    return true;
+
+  }
+
   async deleteOne(id)
   {
     return userModel.deleteOne({ _id: id });
   }
+
+  
 }
 
 export default UserMongooseRepository;

@@ -20,7 +20,8 @@ class ProductsMongooseRepository {
       price: document.price,
       stock: document.stock,
       category: document.category,
-      thumbnail: document.thumbnail
+      thumbnail: document.thumbnail,
+      owner:document.owner
     }));
 
     return {
@@ -44,7 +45,8 @@ class ProductsMongooseRepository {
       productDocument.price,
       productDocument.stock,
       productDocument.category,
-      productDocument.thumbnail
+      productDocument.thumbnail,
+      productDocument.owner
     );
   }
 
@@ -59,7 +61,8 @@ class ProductsMongooseRepository {
       productDocument.price,
       productDocument.stock,
       productDocument.category,
-      productDocument.thumbnail
+      productDocument.thumbnail,
+      productDocument.owner
     );
   }
 
@@ -78,7 +81,8 @@ class ProductsMongooseRepository {
       productDocument.price,
       productDocument.stock,
       productDocument.category,
-      productDocument.thumbnail
+      productDocument.thumbnail,
+      productDocument.owner
     );
   }
 

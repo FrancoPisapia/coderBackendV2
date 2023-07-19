@@ -35,6 +35,12 @@ const errorHandler = (err, req, res, next) =>
       return res.status(404).send({ message: "User don't exist."});
   }
 
+  else if (err?.message.includes('You cannot repeat password'))
+  {
+      console.log(err.stack);
+      return res.status(404).send({ message: "You cannot repeat password"});
+  }
+
 	console.log(err.stack);
 	res.status(500).json({ message: 'Ocurrió un error' });
 };

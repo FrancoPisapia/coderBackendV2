@@ -44,6 +44,7 @@ class UserManager
     return this.userRepository.updateOne(id, data);
   }
 
+
   // async addCart(id, data)
   // {
   //   return this.userRepository.addCart(id, data);
@@ -55,13 +56,6 @@ class UserManager
     return this.userRepository.deleteOne(id);
   }
 
-  async forgetPassword(dto)
-  {
-    const user = await this.userRepository.getOneByEmail(dto.email);
-    user.password = dto.password;
-
-    return this.userRepository.updateOne(user.id, user);
-  }
 }
 
 export default UserManager;

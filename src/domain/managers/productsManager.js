@@ -22,10 +22,15 @@ class ProductManager{
         return this.productRepository.getOne(id)
     }
 
-    async create (data)
+    async create (data,owner)
     {
-        await productCreateValidation.parseAsync(data)
-        return this.productRepository.create(data)
+        await productCreateValidation.parseAsync(data);
+        const dto = {
+            ...data,
+            owner
+          };
+        return this.productRepository.create(dto,owner);
+        
     }
 
     async updateOne (id,data)
