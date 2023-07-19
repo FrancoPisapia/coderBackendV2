@@ -51,7 +51,7 @@ export const forgotPassword = async (req, res, next) => {
     const accessToken = await manager.forgotPassword(email);
     sendMailPassword(email,accessToken)
 
-    res.status(200).json({message:`Token enviado al mail`,accessToken});
+    res.status(200).json({message:`Token enviado al mail`});
   } catch (e) {
     next(e);
   }
