@@ -81,9 +81,13 @@ export const update= async (req,res,next) =>
     {
     const { cid,pid } = req.params;
 
+    const email = req.user.email
+    const role = req.user.role
+    const roleName=role.name
+
     const manager = new CartManager();
 
-    const product = await manager.addProduct(cid,pid);
+    const product = await manager.addProduct(cid,pid,roleName,email);
 
     res.send({ status: 'success',product, message: 'Cart updated' })  
     }

@@ -39,10 +39,22 @@ class ProductManager{
         return this.productRepository.updateOne(id,data)
     }
 
-    async deleteOne(id)
+    async deleteOne(id,role,owner)
     {
         await idValidation.parseAsync({id})
-        return this.productRepository.deleteOne(id)
+
+        const existingProduct = await this.getOne(id);
+
+
+        if (role === 'admin' || existingProduct.owner === owner) {
+
+            return this.productRepository.deleteOne(id)
+        } else {
+            const error = new Error('Unauthorized: You do not have permission to delete this product');
+            throw error;
+          }
+          
+        
     }
 
     // async addImageById(id,data)

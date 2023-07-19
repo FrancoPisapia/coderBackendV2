@@ -41,12 +41,18 @@ class CartManager{
 
 
     //Agregar un producto o crear uno de no tener
-    async addProduct(cid, pid) {
+    async addProduct(cid, pid,role,user) {
 
       await idValidationCartProduct.parseAsync({cid,pid});
 
       const cart = await this.cartRepository.getOne(cid);
       const product = await this.productRepository.getOne(pid);
+
+
+      if (role ==='premium' && product.owner === user) {
+        const error = new Error( "Premium users cannot add their own products to the cart.");
+        throw error
+      }
 
       const existingProduct = cart.products.find(p => p._id.equals(pid));
    

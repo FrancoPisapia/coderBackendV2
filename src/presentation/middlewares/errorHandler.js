@@ -41,6 +41,17 @@ const errorHandler = (err, req, res, next) =>
       return res.status(404).send({ message: "You cannot repeat password"});
   }
 
+  else if (err?.message.includes('Unauthorized: You do not have permission to delete this product'))
+  {
+      console.log(err.stack);
+      return res.status(404).send({ message: "Unauthorized: You do not have permission to delete this product"});
+  }
+  else if (err?.message.includes('Premium users cannot add their own products to the cart.'))
+  {
+      console.log(err.stack);
+      return res.status(404).send({ message: "Premium users cannot add their own products to the cart."});
+  }
+
 	console.log(err.stack);
 	res.status(500).json({ message: 'Ocurrió un error' });
 };

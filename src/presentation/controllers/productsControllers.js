@@ -99,16 +99,11 @@ export const deleteOne = async (req,res,next) =>{
     const {id} = req.params
 
     const manager = new ProductManager();
+    const email = req.user.email
+    const role = req.user.role
+    const result = await manager.deleteOne(id,role,email);
+    res.send({ status: 'success', result, message: 'Product deleted' });
 
-    const existingProduct = await manager.getOne(id);
-
-
-    if (req.user.role === 'admin' || existingProduct.owner === req.user.email) {
-        const result = await manager.deleteOne(id);
-        res.send({ status: 'success', result, message: 'Product deleted' });
-      } else {
-        throw new Error('Unauthorized: You do not have permission to delete this product');
-      }
     }
     catch (e)
     {
