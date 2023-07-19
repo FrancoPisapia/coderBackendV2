@@ -9,7 +9,7 @@ const authorization = (permission) =>
         //     return res.status(401).send({ message: 'Not authorization!'});
         // }
 
-        if (!user.isAdmin || !user.role?.permissions.includes(permission)) {
+        if (!user.isAdmin && !user.role?.permissions.includes(permission)) {
             return res.status(401).send({ message: 'Not authorization!' });
         }
 
