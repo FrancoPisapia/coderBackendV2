@@ -19,3 +19,12 @@ export const generateToken = async (user) =>
       resolve(token);
     });
 }
+
+export const generateTokenForgotPassword = async (user) =>
+{
+    return new Promise((resolve, reject) =>
+    {
+      const token = jwt.sign({ user: { ...user, password: undefined } }, process.env.PRIVATE_KEY, { expiresIn: '1h' });
+      resolve(token);
+    });
+}

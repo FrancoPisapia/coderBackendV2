@@ -1,6 +1,6 @@
 //import UserMongooseDao from "../../data/repositories/mongoose/userMongooseDao.js";
 
-import {createHash, generateToken, isValidPassword} from '../../shared/index.js';
+import {createHash, generateToken, isValidPassword,generateTokenForgotPassword} from '../../shared/index.js';
 
 import userCreateValidation from '../validations/users/userCreateValidation.js'
 import loginValidation from "../validations/sessions/loginValidation.js";
@@ -60,12 +60,14 @@ class SessionManager
 
     const user = await this.userRepository.getOneByEmail(email);
 
+    
+
 
 
     if (!user.email) {
       throw new Error('User dont exist.');
     }
-    const tokenPassword =generateToken(user);
+    const tokenPassword =generateTokenForgotPassword(user);
 
 
     return tokenPassword

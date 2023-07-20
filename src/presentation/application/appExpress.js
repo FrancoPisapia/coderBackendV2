@@ -7,6 +7,7 @@ import cartsRouter from '../routes/carts.js';
 import userRouter from '../routes/userRouter.js';
 import roleRouter from '../routes//roleRouter.js';
 import routerSessions from '../routes/sessions.js';
+import emailRouter from '../routes/emailRouter.js';
 
 import errorHandler from '../middlewares/errorHandler.js';
 
@@ -26,7 +27,8 @@ class AppExpress
         this.app.use('/api/carts', cartsRouter);
         this.app.use('/api/sessions', routerSessions);
         this.app.use('/api/user',userRouter);
-        this.app.use('/api/roles',roleRouter)
+        this.app.use('/api/roles',roleRouter);
+        this.app.use('/api/email', emailRouter);
         this.app.use(errorHandler)
     }
 

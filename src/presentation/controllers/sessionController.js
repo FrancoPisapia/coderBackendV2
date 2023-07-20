@@ -48,8 +48,8 @@ export const forgotPassword = async (req, res, next) => {
   try {
     const { email } = req.body;
     const manager = new SessionManager();
-    const accessToken = await manager.forgotPassword(email);
-    sendMailPassword(email,accessToken)
+    const forgotPasswordToken = await manager.forgotPassword(email);
+    sendMailPassword(email,forgotPasswordToken)
 
     res.status(200).json({message:`Token enviado al mail`});
   } catch (e) {
@@ -61,11 +61,13 @@ export const changePassword = async (req, res, next) => {
   try {
     const { email, password } = req.body;
 
+    
+      const manager = new SessionManager();
+      const result = await manager.changePassword(email, password);
+      res.status(200).json({ message: 'Password changed successfully',result});
+    
 
-    const manager = new SessionManager();
-    const result = await manager.changePassword(email, password);
 
-    res.status(200).json({ message: 'Password changed successfully',result});
   } catch (e) {
     next(e);
   }
