@@ -1,0 +1,174 @@
+openapi: 3.0.0
+info:
+  title: API de Usuarios
+  version: 1.0.0
+paths:
+  /api/users/:
+    get:
+      summary: Obtiene todos los usuarios
+      tags:
+        - Users
+      responses:
+        "200":
+          description: Usuarios obtenidos
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                  users:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/User'
+                  pagination:
+                    type: object
+                    properties:
+                      totalDocs:
+                        type: number
+                      totalPages:
+                        type: number
+                      page:
+                        type: number
+                      limit:
+                        type: number
+      "500":
+        description: Error del servidor
+    post:
+      summary: Crea un nuevo usuario
+      tags:
+        - User
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NewUser'
+      responses:
+        "200":
+          description: Usuario creado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        "400":
+          description: Solicitud incorrecta
+        "500":
+          description: Error del servidor
+
+
+  /api/users/{uid}:
+    get:
+      summary: Obtiene el usuario por su id
+      tags:
+        - User
+      parameters:
+      - name: uid
+        in: path
+        required: true
+        description: Id del usuario
+        schema:
+          type: string
+      responses:
+        "200":
+          description: Usuario obtenido
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        "404":
+          description: Usuario no encontrado
+        "500":
+          description: Error del servidor
+    put:
+      summary: Actualiza un usuario existente
+      tags:
+        - User
+      parameters:
+      - name: uid
+        in: path
+        required: true
+        description: Id del usuario
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+      responses:
+        "200":
+          description: Usuario actualizado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        "404":
+          description: Usuario no encontrado
+        "500":
+          description: Error del servidor
+    delete:
+      summary: Elimina un usuario existente
+      tags:
+        - User
+      parameters:
+      - name: uid
+        in: path
+        required: true
+        description: Id del usuario
+        schema:
+          type: string
+      responses:
+        "200":
+          description: Usuario eliminado
+        "404":
+          description: Usuario no encontrado
+        "500":
+          description: Error del servidor
+
+components:
+  schemas:
+    User:
+      type: object
+      properties:
+        id:
+          type: string
+        firstName:
+          type: string
+        lastName:
+          type: string
+        email:
+          type: string
+        age:
+          type: number
+        isAdmin:
+          type: boolean
+        role:
+          type: object
+          properties:
+            id:
+              type: string
+            name:
+              type: string
+            permissions:
+              type: array
+              items:
+                type: string
+
+    NewUser:
+      type: object
+      properties:
+        firstName:
+          type: string
+        lastName:
+          type: string
+        email:
+          type: string
+        age:
+          type: number
+        isAdmin:
+          type: boolean
+        role:
+          type: string

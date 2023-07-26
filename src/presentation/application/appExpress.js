@@ -1,6 +1,9 @@
 import express from 'express';
 import cookieParser from "cookie-parser";
-
+import swaggerJSDoc from 'swagger-jsdoc';
+import swaggerUiExpress from 'swagger-ui-express';
+import { swaggerOptions } from './swaggerOptions.js';
+import __dirname from '../../shared/direname.js'
 
 import productsRouter from '../routes/products.js'
 import cartsRouter from '../routes/carts.js';
@@ -10,6 +13,8 @@ import routerSessions from '../routes/sessions.js';
 import emailRouter from '../routes/emailRouter.js';
 
 import errorHandler from '../middlewares/errorHandler.js';
+
+const specs = swaggerJSDoc(swaggerOptions)
 
 class AppExpress
 {
@@ -29,7 +34,10 @@ class AppExpress
         this.app.use('/api/user',userRouter);
         this.app.use('/api/roles',roleRouter);
         this.app.use('/api/email', emailRouter);
+        this.app.use('/apidocs',swaggerUiExpress.serve,swaggerUiExpress.setup(specs))
         this.app.use(errorHandler)
+        
+        
     }
 
     callback()
@@ -46,6 +54,7 @@ class AppExpress
     {
         {
             this.server = this.app.listen(process.env.NODE_PORT, () => {
+            console.log(__dirname)
             console.log(`Server listening on port ${process.env.NODE_PORT}`);
             });
             
