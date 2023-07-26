@@ -1,0 +1,162 @@
+openapi: 3.0.0
+info:
+  title: API de Sesiones
+  version: 1.0.0
+paths:
+  /api/sessions/login:
+    post:
+      summary: Iniciar sesión
+      tags:
+        - Sesiones
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                password:
+                  type: string
+      responses:
+        "200":
+          description: Inicio de sesión exitoso
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                  accessToken:
+                    type: string
+        "401":
+          description: Credenciales de inicio de sesión inválidas
+        "500":
+          description: Error del servidor
+
+  /api/sessions/current:
+    get:
+      summary: Obtener información del usuario actualmente autenticado
+      tags:
+        - Sesiones
+      responses:
+        "200":
+          description: Información del usuario
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        "401":
+          description: Usuario no autenticado
+        "500":
+          description: Error del servidor
+
+  /api/sessions/signup:
+    post:
+      summary: Crear una nueva cuenta de usuario
+      tags:
+        - Sesiones
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                email:
+                  type: string
+                password:
+                  type: string
+      responses:
+        "201":
+          description: Cuenta de usuario creada
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                  user:
+                    $ref: '#/components/schemas/User'
+                  message:
+                    type: string
+        "500":
+          description: Error del servidor
+
+  /api/sessions/password:
+    post:
+      summary: Enviar un token de restablecimiento de contraseña
+      tags:
+        - Sesiones
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+      responses:
+        "200":
+          description: Token enviado al correo electrónico
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+        "404":
+          description: Usuario no encontrado
+        "500":
+          description: Error del servidor
+
+    put:
+      summary: Cambiar la contraseña de un usuario
+      tags:
+        - Sesiones
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                password:
+                  type: string
+      responses:
+        "200":
+          description: Contraseña cambiada con éxito
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+        "400":
+          description: No se puede repetir la contraseña actual
+        "404":
+          description: Usuario no encontrado
+        "500":
+          description: Error del servidor
+
+components:
+  schemas:
+    User:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        email:
+          type: string

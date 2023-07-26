@@ -1,0 +1,100 @@
+openapi: 3.0.0
+info:
+  title: API de Roles
+  version: 1.0.0
+paths:
+  /api/roles:
+    get:
+      summary: Obtener lista de roles paginada
+      tags:
+        - Roles
+      parameters:
+        - in: query
+          name: limit
+          schema:
+            type: integer
+          description: Número máximo de roles por página
+        - in: query
+          name: page
+          schema:
+            type: integer
+          description: Número de página
+      responses:
+        "200":
+          description: Lista de roles paginada
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                  roles:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Role'
+                  totalDocs:
+                    type: integer
+                  limit:
+                    type: integer
+                  page:
+                    type: integer
+                  totalPages:
+                    type: integer
+                  pagingCounter:
+                    type: integer
+                  hasPrevPage:
+                    type: boolean
+                  hasNextPage:
+                    type: boolean
+                  prevPage:
+                    type: integer
+                  nextPage:
+                    type: integer
+    post:
+      summary: Crear un nuevo rol
+      tags:
+        - Roles
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RoleInput'
+      responses:
+        "200":
+          description: Rol creado exitosamente
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                  role:
+                    $ref: '#/components/schemas/Role'
+                  message:
+                    type: string
+components:
+  schemas:
+    Role:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        permissions:
+          type: array
+          items:
+            type: string
+
+    RoleInput:
+      type: object
+      properties:
+        name:
+          type: string
+        permissions:
+          type: array
+          items:
+            type: string

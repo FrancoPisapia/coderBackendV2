@@ -1,16 +1,16 @@
 openapi: 3.0.0
 info:
-  title: API de Usuarios
+  title: API de Productos
   version: 1.0.0
 paths:
-  /api/users/:
+  /api/products/:
     get:
-      summary: Obtiene todos los usuarios
+      summary: Obtiene todos los productos
       tags:
-        - Users
+        - Products
       responses:
         "200":
-          description: Usuarios obtenidos
+          description: Productos obtenidos
           content:
             application/json:
               schema:
@@ -18,10 +18,10 @@ paths:
                 properties:
                   status:
                     type: string
-                  users:
+                  product:
                     type: array
                     items:
-                      $ref: '#/components/schemas/User'
+                      $ref: '#/components/schemas/Product'
                   pagination:
                     type: object
                     properties:
@@ -35,61 +35,61 @@ paths:
                         type: number
       "500":
         description: Error del servidor
+
     post:
-      summary: Crea un nuevo usuario
+      summary: Crea un nuevo producto
       tags:
-        - Users
+        - Products
       requestBody:
         required: true
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/NewUser'
+              $ref: '#/components/schemas/NewProduct'
       responses:
         "200":
-          description: Usuario creado
+          description: Producto creado
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/User'
+                $ref: '#/components/schemas/Product'
         "400":
           description: Solicitud incorrecta
         "500":
           description: Error del servidor
-
-
-  /api/users/{uid}:
+  /api/products/{id}:
     get:
-      summary: Obtiene el usuario por su id
+      summary: Obtiene un producto por su id
       tags:
-        - Users
+        - Products
       parameters:
-      - name: uid
+      - name: id
         in: path
         required: true
-        description: Id del usuario
+        description: Id del producto
         schema:
           type: string
       responses:
         "200":
-          description: Usuario obtenido
+          description: Producto obtenido
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/User'
+                $ref: '#/components/schemas/Product'
         "404":
-          description: Usuario no encontrado
+          description: Producto no encontrado
         "500":
           description: Error del servidor
+
     put:
-      summary: Actualiza un usuario existente
+      summary: Actualiza un producto existente
       tags:
-        - Users
+        - Products
       parameters:
-      - name: uid
+      - name: id
         in: path
         required: true
-        description: Id del usuario
+        description: Id del producto
         schema:
           type: string
       requestBody:
@@ -97,78 +97,78 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/User'
+              $ref: '#/components/schemas/Product'
       responses:
         "200":
-          description: Usuario actualizado
+          description: Producto actualizado
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/User'
+                $ref: '#/components/schemas/Product'
         "404":
-          description: Usuario no encontrado
+          description: Producto no encontrado
         "500":
           description: Error del servidor
+
     delete:
-      summary: Elimina un usuario existente
+      summary: Elimina un producto existente
       tags:
-        - Users
+        - Products
       parameters:
-      - name: uid
+      - name: id
         in: path
         required: true
-        description: Id del usuario
+        description: Id del producto
         schema:
           type: string
       responses:
         "200":
-          description: Usuario eliminado
+          description: Producto eliminado
         "404":
-          description: Usuario no encontrado
+          description: Producto no encontrado
         "500":
           description: Error del servidor
 
 components:
   schemas:
-    User:
+    Product:
       type: object
       properties:
         id:
           type: string
-        firstName:
+        title:
           type: string
-        lastName:
+        description:
           type: string
-        email:
+        code:
           type: string
-        age:
+        price:
           type: number
-        isAdmin:
-          type: boolean
-        role:
-          type: object
-          properties:
-            id:
-              type: string
-            name:
-              type: string
-            permissions:
-              type: array
-              items:
-                type: string
+        stock:
+          type: number
+        category:
+          type: string
+        thumbnail:
+          type: string
+        owner:
+          type: string
 
-    NewUser:
+    NewProduct:
       type: object
       properties:
-        firstName:
+        title:
           type: string
-        lastName:
+        description:
           type: string
-        email:
+        code:
           type: string
-        age:
+        price:
           type: number
-        isAdmin:
-          type: boolean
-        role:
+        stock:
+          type: number
+        category:
+          type: string
+        thumbnail:
+          type: string
+        owner:
           type: string

@@ -1,0 +1,262 @@
+openapi: 3.0.0
+info:
+  title: API de Carritos
+  version: 1.0.0
+paths:
+  /api/carts/:
+    get:
+      summary: Obtiene todos los carritos
+      tags:
+        - Carts
+      responses:
+        "200":
+          description: Carritos obtenidos
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                  carts:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Cart'
+      "500":
+        description: Error del servidor
+
+    post:
+      summary: Crea un nuevo carrito
+      tags:
+        - Carts
+      responses:
+        "200":
+          description: Carrito creado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Cart'
+        "500":
+          description: Error del servidor
+
+  /api/carts/{id}:
+    get:
+      summary: Obtiene un carrito por su id
+      tags:
+        - Carts
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: Id del carrito
+        schema:
+          type: string
+      responses:
+        "200":
+          description: Carrito obtenido
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Cart'
+        "404":
+          description: Carrito no encontrado
+        "500":
+          description: Error del servidor
+    put:
+      summary: Actualiza un carrito existente
+      tags:
+        - Carts
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: Id del carrito
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Cart'
+      responses:
+        "200":
+          description: Carrito actualizado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Cart'
+        "404":
+          description: Carrito no encontrado
+        "500":
+          description: Error del servidor
+
+
+  /api/carts/{cid}/product/{pid}:
+    post:
+      summary: Agrega un producto al carrito
+      tags:
+        - Carts
+      parameters:
+      - name: cid
+        in: path
+        required: true
+        description: Id del carrito
+        schema:
+          type: string
+      - name: pid
+        in: path
+        required: true
+        description: Id del producto
+        schema:
+          type: string
+      responses:
+        "200":
+          description: Producto agregado al carrito
+        "403":
+          description: Producto no se puede agregar al carrito
+        "404":
+          description: Carrito o producto no encontrado
+        "500":
+          description: Error del servidor
+
+    put:
+      summary: Modifica la cantidad de un producto en el carrito
+      tags:
+        - Carts
+      parameters:
+      - name: cid
+        in: path
+        required: true
+        description: Id del carrito
+        schema:
+          type: string
+      - name: pid
+        in: path
+        required: true
+        description: Id del producto
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                quantity:
+                  type: number
+        responses:
+          "200":
+            description: Cantidad modificada
+          "404":
+            description: Carrito o producto no encontrado
+          "500":
+            description: Error del servidor
+
+    delete:
+      summary: Elimina un producto del carrito
+      tags:
+        - Carts
+      parameters:
+      - name: cid
+        in: path
+        required: true
+        description: Id del carrito
+        schema:
+          type: string
+      - name: pid
+        in: path
+        required: true
+        description: Id del producto
+        schema:
+          type: string
+      responses:
+        "200":
+          description: Producto eliminado del carrito
+        "404":
+          description: Carrito o producto no encontrado
+        "500":
+          description: Error del servidor
+
+
+  /carts/{id}/purchase:
+    post:
+      summary: Purchase the cart and create a new ticket
+      tags:
+        - Ticket
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: string
+          required: true
+          description: Cart ID
+      requestBody:
+        description: Purchaser's email
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                purchaser:
+                  type: string
+      responses:
+        '200':
+          description: Cart purchased and ticket created successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                  ticket:
+                    $ref: '#/components/schemas/Ticket'
+        '400':
+          description: Bad request
+        '404':
+          description: Cart not found
+components:
+  schemas:
+    Cart:
+      type: object
+      properties:
+        id:
+          type: string
+        products:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+              quantity:
+                type: number
+    Ticket:
+      type: object
+      properties:
+        id:
+          type: string
+        code:
+          type: string
+        purchase_datetime:
+          type: string
+          format: date-time
+        amount:
+          type: number
+        purchaser:
+          type: string
+    TicketInput:
+      type: object
+      properties:
+        code:
+          type: string
+        purchase_datetime:
+          type: string
+          format: date-time
+        amount:
+          type: number
+        purchaser:
+          type: string
