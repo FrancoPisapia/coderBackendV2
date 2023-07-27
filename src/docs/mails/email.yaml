@@ -1,0 +1,72 @@
+openapi: 3.0.0
+info:
+  title: Email Service API
+  description: API endpoints for the Email Service
+  version: 1.0.0
+
+paths:
+  /send-email:
+    post:
+      summary: Send email for password recovery
+      tags:
+        - Email
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  format: email
+                  description: Email address of the user
+              required:
+                - email
+      responses:
+        '200':
+          description: Email sent successfully
+        '400':
+          description: Bad request
+        '500':
+          description: Internal server error
+
+  /change-password:
+    put:
+      summary: Change user password
+      tags:
+        - Email
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  format: email
+                  description: Email address of the user
+                password:
+                  type: string
+                  format: password
+                  description: New password for the user
+              required:
+                - email
+                - password
+      responses:
+        '200':
+          description: Password changed successfully
+        '400':
+          description: Bad request
+        '401':
+          description: Unauthorized
+        '500':
+          description: Internal server error
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer

@@ -44,7 +44,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/NewUser'
+              $ref: '#/components/schemas/User'
       responses:
         "200":
           description: Usuario creado
@@ -157,18 +157,3 @@ components:
               items:
                 type: string
 
-    NewUser:
-      type: object
-      properties:
-        firstName:
-          type: string
-        lastName:
-          type: string
-        email:
-          type: string
-        age:
-          type: number
-        isAdmin:
-          type: boolean
-        role:
-          type: string
