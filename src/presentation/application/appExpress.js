@@ -13,7 +13,7 @@ import routerSessions from '../routes/sessions.js';
 import emailRouter from '../routes/emailRouter.js';
 
 import errorHandler from '../middlewares/errorHandler.js';
-
+import { addLogger } from '../middlewares/logger.js';
 const specs = swaggerJSDoc(swaggerOptions)
 
 class AppExpress
@@ -23,7 +23,9 @@ class AppExpress
         this.app = express();
         this.app.use(express.json());
         this.app.use(express.urlencoded({extended: true}));
+        this.app.use(addLogger)
         this.app.use(cookieParser());
+    
     }
 
     build()

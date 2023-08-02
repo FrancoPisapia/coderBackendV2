@@ -1,0 +1,47 @@
+[31m[2023-08-02T21:11:04.631Z] [ERROR]: ZodError: [[39m
+[31m  {[39m
+[31m    "code": "too_small",[39m
+[31m    "minimum": 24,[39m
+[31m    "type": "string",[39m
+[31m    "inclusive": true,[39m
+[31m    "exact": true,[39m
+[31m    "message": "String must contain exactly 24 character(s)",[39m
+[31m    "path": [[39m
+[31m      "id"[39m
+[31m    ][39m
+[31m  }[39m
+[31m][39m
+[31m    at get error [as error] (file:///C:/Users/Usuario/Documents/cursos-coderhouse/Backend/Codigo%20del%20profesor/node_modules/zod/lib/index.mjs:537:31)[39m
+[31m    at ZodObject.parseAsync (file:///C:/Users/Usuario/Documents/cursos-coderhouse/Backend/Codigo%20del%20profesor/node_modules/zod/lib/index.mjs:659:22)[39m
+[31m    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)[39m
+[31m    at async ProductManager.getOne (file:///C:/Users/Usuario/Documents/cursos-coderhouse/Backend/Codigo%20del%20profesor/src/domain/managers/productsManager.js:21:9)[39m
+[31m    at async getOne (file:///C:/Users/Usuario/Documents/cursos-coderhouse/Backend/Codigo%20del%20profesor/src/presentation/controllers/productsControllers.js:44:21)[39m
+[31m[2023-08-02T21:23:42.801Z] [ERROR]: Error: Login failed, invalid password.[39m
+[31m    at SessionManager.login (file:///C:/Users/Usuario/Documents/cursos-coderhouse/Backend/Codigo%20del%20profesor/src/domain/managers/sessionManager.js:35:15)[39m
+[31m    at async login (file:///C:/Users/Usuario/Documents/cursos-coderhouse/Backend/Codigo%20del%20profesor/src/presentation/controllers/sessionController.js:13:25)[39m
+[31m[2023-08-02T21:23:46.646Z] [ERROR]: Error: Login failed, invalid password.[39m
+[31m    at SessionManager.login (file:///C:/Users/Usuario/Documents/cursos-coderhouse/Backend/Codigo%20del%20profesor/src/domain/managers/sessionManager.js:35:15)[39m
+[31m    at async login (file:///C:/Users/Usuario/Documents/cursos-coderhouse/Backend/Codigo%20del%20profesor/src/presentation/controllers/sessionController.js:13:25)[39m
+[31m[2023-08-02T21:39:47.354Z] [ERROR]: TypeError: Cannot read properties of null (reading 'role')[39m
+[31m    at UserMongooseRepository.getOneByEmail (file:///C:/Users/Usuario/Documents/cursos-coderhouse/Backend/Codigo%20del%20profesor/src/data/repositories/mongoose/userMongooseRepository.js:65:22)[39m
+[31m    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)[39m
+[31m    at async SessionManager.login (file:///C:/Users/Usuario/Documents/cursos-coderhouse/Backend/Codigo%20del%20profesor/src/domain/managers/sessionManager.js:24:18)[39m
+[31m    at async login (file:///C:/Users/Usuario/Documents/cursos-coderhouse/Backend/Codigo%20del%20profesor/src/presentation/controllers/sessionController.js:13:25)[39m
+[31m[2023-08-02T21:40:14.366Z] [ERROR]: ZodError: [[39m
+[31m  {[39m
+[31m    "code": "too_big",[39m
+[31m    "maximum": 24,[39m
+[31m    "type": "string",[39m
+[31m    "inclusive": true,[39m
+[31m    "exact": true,[39m
+[31m    "message": "String must contain exactly 24 character(s)",[39m
+[31m    "path": [[39m
+[31m      "id"[39m
+[31m    ][39m
+[31m  }[39m
+[31m][39m
+[31m    at get error [as error] (file:///C:/Users/Usuario/Documents/cursos-coderhouse/Backend/Codigo%20del%20profesor/node_modules/zod/lib/index.mjs:537:31)[39m
+[31m    at ZodObject.parseAsync (file:///C:/Users/Usuario/Documents/cursos-coderhouse/Backend/Codigo%20del%20profesor/node_modules/zod/lib/index.mjs:659:22)[39m
+[31m    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)[39m
+[31m    at async ProductManager.getOne (file:///C:/Users/Usuario/Documents/cursos-coderhouse/Backend/Codigo%20del%20profesor/src/domain/managers/productsManager.js:21:9)[39m
+[31m    at async getOne (file:///C:/Users/Usuario/Documents/cursos-coderhouse/Backend/Codigo%20del%20profesor/src/presentation/controllers/productsControllers.js:46:21)[39m

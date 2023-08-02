@@ -1,6 +1,8 @@
 import RoleManager from "../../domain/managers/roleManager.js";
 
+import { developmentLogger } from "../../shared/logger.js"
 
+const logger = process.env.NODE_ENV === 'production' ? null : developmentLogger
 
 
 export const list = async  (req, res) =>
@@ -22,7 +24,7 @@ export const getOne = async (req, res,next ) =>
 
     const manager = new RoleManager();
     const role = await manager.getOne(id);
-
+    logger?.info(`Role created with ID ${role.id}`);
     res.send({ status: 'success', role });
   }
   catch (e)
@@ -57,7 +59,7 @@ export const update = async (req, res,next) =>
 
     const manager = new RoleManager();
     const result = await manager.updateOne(id, req.body);
-  
+    logger?.info(`Role updated with ID ${id}`);
     res.send({ status: 'success', result, message: 'Role updated.' })
   }
   catch(e)
@@ -76,7 +78,7 @@ export const deleteOne = async (req, res,next) =>
 
   const manager = new RoleManager();
   await manager.deleteOne(id);
-
+  logger?.info(`Role deleted with ID ${id}`);
   res.send({ status: 'success', message: 'Role deleted.' });
   }
   catch(e)

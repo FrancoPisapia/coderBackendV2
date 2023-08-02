@@ -1,6 +1,8 @@
 import ProductManager from "../../domain/managers/productsManager.js";
 import uploader from "../middlewares/multer.js";
+import { developmentLogger } from "../../shared/logger.js"
 
+const logger = process.env.NODE_ENV === 'production' ? null : developmentLogger
 
 // class ProductController
 // {
@@ -23,7 +25,7 @@ export const list = async  (req, res, next) =>
 
     const manager = new ProductManager();
     const product = await manager.paginate({ limit, page });
-
+    
     res.send({ status: 'success', product: product.docs, ...product, docs: undefined });
   }
   catch (e)
@@ -42,7 +44,7 @@ export const getOne= async (req,res,next) =>{
     const manager = new ProductManager();
 
     const product = await manager.getOne(id);
-
+    logger?.info(`Product received with ID ${id}`);
     res.send ({status:'succeed',product});
     }
     catch (e)
@@ -60,7 +62,7 @@ export const save = async (req,res,next) =>{
     const email = req.user.email
     const product = await manager.create(req.body,email);
     
-
+    logger?.info(`Product created with ID ${product.id}`);
     res.send ({status:'succeed',product, message:'Product created'});
     }
     catch (e)
@@ -80,7 +82,7 @@ export const update = async ( req,res,next)=>{
     
         const result = await manager.updateOne(id, req.body);
 
-
+        logger?.info(`Product updated with ID ${id}`);
     
         res.send({ status: 'success', result, message: 'Product updated' })
     }
@@ -102,6 +104,7 @@ export const deleteOne = async (req,res,next) =>{
     const email = req.user.email
     const role = req.user.role
     const result = await manager.deleteOne(id,role,email);
+    logger?.info(`Product deleted with ID ${id}`);
     res.send({ status: 'success', result, message: 'Product deleted' });
 
     }

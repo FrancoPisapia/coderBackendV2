@@ -1,5 +1,8 @@
 import SessionManager from "../../domain/managers/sessionManager.js";
 import { sendMailPassword } from "../../shared/mailPassword.js";
+import { developmentLogger } from "../../shared/logger.js"
+
+const logger = process.env.NODE_ENV === 'production' ? null : developmentLogger
 
 export const login = async  (req, res, next) =>
 {
@@ -9,6 +12,8 @@ export const login = async  (req, res, next) =>
     const manager = new SessionManager();
     const accessToken = await manager.login(email, password);
 
+    logger?.info(`User ${email} logged in successfully`);
+
     res.cookie('accessToken', accessToken, {
         maxAge: 60*60*1000,
         httpOnly: true
@@ -16,6 +21,7 @@ export const login = async  (req, res, next) =>
   }
   catch (e)
   {
+    
 		next(e);
 	}
 };
@@ -35,6 +41,8 @@ export const signup = async (req, res, next) =>
     const manager = new SessionManager();
     const user = await manager.signup(req.body);
 
+    logger?.info(`User ${user.email} signed up successfully`);
+
     res.status(201).send({ status: 'success', user, message: 'User created.' });
   }
   catch (e)
@@ -51,6 +59,8 @@ export const forgotPassword = async (req, res, next) => {
     const forgotPasswordToken = await manager.forgotPassword(email);
     sendMailPassword(email,forgotPasswordToken)
 
+
+    logger?.info(`Forgot password token sent to ${email}`);
     res.status(200).json({message:`Token enviado al mail`});
   } catch (e) {
     next(e);
@@ -64,6 +74,9 @@ export const changePassword = async (req, res, next) => {
     
       const manager = new SessionManager();
       const result = await manager.changePassword(email, password);
+
+      logger?.info(`Password changed successfully for user ${email}`);
+
       res.status(200).json({ message: 'Password changed successfully',result});
     
 
