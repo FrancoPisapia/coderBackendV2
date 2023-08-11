@@ -1,9 +1,9 @@
-import productCreateValidation from "../validations/product/productCreateValidation.js";
+import productCreateValidation from '../validations/product/productCreateValidation.js';
 
-import idValidation from "../validations/share/idValidation.js";
+import idValidation from '../validations/share/idValidation.js';
 import productUpdateValidation from '../validations/product/productUpdateValidation.js';
 
-import container from "../../container.js";
+import container from '../../container.js';
 
 class ProductManager{
     constructor()

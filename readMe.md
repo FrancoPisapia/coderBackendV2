@@ -54,3 +54,7 @@ Detener contenedor
 Remover contenedores
 
 * docker-compose down
+
+Armarlo
+
+* docker-compose build

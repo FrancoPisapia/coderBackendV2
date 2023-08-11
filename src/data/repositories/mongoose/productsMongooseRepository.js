@@ -1,5 +1,5 @@
-import productModel from "../../models/mongoose/productsModels.js";
-import Product from "../../../domain/entities/product.js";
+import productModel from  '../../models/mongoose/productsModels.js';
+import Product from '../../../domain/entities/product.js';
 
 class ProductsMongooseRepository {
 

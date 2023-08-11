@@ -1,10 +1,10 @@
 //import UserMongooseDao from "../../data/dao/userMongooseDao.js";
-import idValidation from "../validations/share/idValidation.js";
+import idValidation from '../validations/share/idValidation.js';
 
 import userCreateValidation from '../validations/users/userCreateValidation.js'
 import userUpdateValidation from '../validations/users/userUpdateValidation.js'
 
-import container from "../../container.js";
+import container from '../../container.js';
 
 class UserManager
 {

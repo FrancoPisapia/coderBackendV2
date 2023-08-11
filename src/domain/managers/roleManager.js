@@ -1,10 +1,10 @@
-import RoleMongooseRepository from "../../data/repositories/mongoose/roleMongooseRepository.js";
-import idValidation from "../validations/share/idValidation.js";
+
+import idValidation from '../validations/share/idValidation.js';
 
 import roleCreateValidation from '../validations/roles/roleCreateValidation.js';
 import roleUpdateValidation from '../validations/roles/roleUpdateValidation.js'
 
-import container from "../../container.js";
+import container from '../../container.js';
 
 class RoleManager
 {

@@ -1,10 +1,10 @@
-import idValidation from "../validations/share/idValidation.js";
-import { generateTicketCode } from "../../shared/codeGenerator.js";
+import idValidation from '../validations/share/idValidation.js';
+import { generateTicketCode } from '../../shared/codeGenerator.js';
 
 import nodemailer from 'nodemailer'
 
-import container from "../../container.js";
-import { sendMail } from "../../shared/mail.js";
+import container from '../../container.js';
+import { sendMail } from '../../shared/mail.js';
 
 class TicketManager 
 {

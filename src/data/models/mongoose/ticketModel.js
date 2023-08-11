@@ -1,5 +1,4 @@
 import mongoose, { Schema } from 'mongoose';
-import paginate from "mongoose-paginate-v2";
 
 const ticketCollection = 'tickets';
 

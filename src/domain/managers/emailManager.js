@@ -1,12 +1,12 @@
-import nodemailer from "nodemailer";
+import nodemailer from 'nodemailer';
 import { resolve } from 'path';
-import fs from "fs";
+import fs from 'fs';
 import Handlebars from 'handlebars';
-import { createHash,generateTokenForgotPassword, isValidPassword } from "../../shared/index.js";
-import emailValidation from "../validations/sessions/emaiValidation.js";
-import loginValidation from "../validations/sessions/loginValidation.js";
+import { createHash,generateTokenForgotPassword, isValidPassword } from '../../shared/index.js';
+import emailValidation from '../validations/sessions/emaiValidation.js';
+import loginValidation from '../validations/sessions/loginValidation.js';
 
-import container from "../../container.js";
+import container from '../../container.js';
 
 class EmailManager
 {

@@ -1,6 +1,6 @@
-import userModel from "../../models/mongoose/usersModel.js"
+import userModel from '../../models/mongoose/usersModel.js'
 import User from '../../../domain/entities/user.js';
-import Role from "../../../domain/entities/role.js";
+import Role from '../../../domain/entities/role.js';
 
 class UserMongooseRepository
 {

@@ -3,10 +3,10 @@
 import {createHash, generateToken, isValidPassword,generateTokenForgotPassword} from '../../shared/index.js';
 
 import userCreateValidation from '../validations/users/userCreateValidation.js'
-import loginValidation from "../validations/sessions/loginValidation.js";
+import loginValidation from '../validations/sessions/loginValidation.js';
 import emailValidation from '../validations/sessions/emaiValidation.js';
 
-import container from "../../container.js";
+import container from '../../container.js';
 
 
 class SessionManager

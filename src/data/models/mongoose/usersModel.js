@@ -1,5 +1,5 @@
 import mongoose, { Schema } from 'mongoose';
-import paginate from "mongoose-paginate-v2";
+import paginate from 'mongoose-paginate-v2';
 
 
 const userCollection = 'users Coder Project-2';

@@ -1,4 +1,4 @@
-import winston from "winston";
+import winston from 'winston';
 
 const logLevels = {
     fatal: 'red',
