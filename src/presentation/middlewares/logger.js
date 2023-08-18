@@ -1,4 +1,4 @@
-import { developmentLogger, productionLogger } from "../../shared/logger.js";
+import { developmentLogger, productionLogger } from '../../shared/logger.js';
 
 export const addLogger = (req, res, next) => {
     const logger = process.env.NODE_ENV === 'production' ? productionLogger : developmentLogger;

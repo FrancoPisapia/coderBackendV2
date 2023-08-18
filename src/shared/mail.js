@@ -17,7 +17,7 @@ export const sendMail = async (ticket,purchaser) =>
     })
 
     const mail = {
-        from: 'franco.pisapia405@gmail.com',
+        from: process.env.SMTP_MAIL,
         to: purchaser,
         subjetc: 'Compra realizada con exito',
         html:`

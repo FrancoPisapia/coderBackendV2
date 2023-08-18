@@ -1,7 +1,7 @@
 
 class User
 {
-  constructor(id,firstName,lastName,email,age,isAdmin,role,password)
+  constructor(id,firstName,lastName,email,age,isAdmin,role,password,lastConnection)
   {
       this.id = id;
       this.firstName = firstName;
@@ -11,6 +11,7 @@ class User
       this.password = password;
       this.isAdmin = isAdmin;
       this.role = role;
+      this.lastConnection = lastConnection
   }
 }
 

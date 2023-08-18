@@ -1,0 +1,50 @@
+openapi: 3.0.0
+info:
+  title: API ecommerce
+  version: 1.0.0
+paths:
+  /addUser:
+    post:
+      tags:
+        - Admin User
+      summary: Add a new user
+      description: |
+        Adds a new user with specified details. You can also use the following command to add a user:
+
+        ```bash
+          npm run command -- addUser -e admin@admin.com -fn admin -ln admin -p 123456 -a 25 -ia true -r 6494b92d1405764b428f7a94
+        ```
+      parameters:
+        - name: email
+          in: query
+          description: User's email
+          required: true
+          type: string
+        - name: firstName
+          in: query
+          description: User's first name
+          required: true
+          type: string
+        - name: lastName
+          in: query
+          description: User's last name
+          required: true
+          type: string
+        - name: password
+          in: query
+          description: User's password
+          required: true
+          type: string
+        - name: age
+          in: query
+          description: User's age
+          required: true
+          type: integer
+        - name: isAdmin
+          in: query
+          description: User's isAdmin status
+          required: true
+          type: boolean
+      responses:
+        200:
+          description: User created successfully

@@ -1,4 +1,4 @@
-import jwt from "jsonwebtoken";
+import jwt from 'jsonwebtoken';
 
 const PrivateKey = 'CoderTokenFP';
 const auth = (req, res, next) =>

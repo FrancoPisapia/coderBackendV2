@@ -12,6 +12,7 @@ AddUserCommand
   .option('-p, --password <password>', 'User`s password')
   .option('-a, --age <age>', 'User`s age')
   .option('-ia, --isAdmin <isAdmin>', 'User`s isAdmin')
+  .option('-r, --role <role>','Object id del Role')
   .action(async(env) =>
   {
     const payload = {

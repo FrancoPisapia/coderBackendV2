@@ -1,6 +1,6 @@
 //import UserMongooseDao from "../../data/repositories/mongoose/userMongooseDao.js";
 
-import {createHash, generateToken, isValidPassword,generateTokenForgotPassword} from '../../shared/index.js';
+import {createHash, generateToken, isValidPassword,generateTokenForgotPassword,logutToken,verifyToken} from '../../shared/index.js';
 
 import userCreateValidation from '../validations/users/userCreateValidation.js'
 import loginValidation from '../validations/sessions/loginValidation.js';
@@ -70,9 +70,9 @@ class SessionManager
 
   }
 
-  async changePassword(email, password)
+  async changePassword(email, password,tokenFromBody)
   {
-    await loginValidation.parseAsync({ email, password });
+    await loginValidation.parseAsync({ email, password, tokenFromBody});
 
     const user = await this.userRepository.getOneByEmail(email);
 
@@ -86,11 +86,35 @@ class SessionManager
       throw new Error('You cannot repeat password');
     }
 
+    const decodedToken = await verifyToken(tokenFromBody)
+
+    console.log(decodedToken)
+    if (decodedToken.user.email !== email) {
+      throw new Error('Invalid or mismatched token');
+    }
+
     return this.userRepository.updatePasswordByEmail(email, hashedPassword);
   }
 
 
-  
+  async updateLastConnection(email) {
+
+    try {
+      const user = await this.userRepository.getOneByEmail(email);
+
+      if (!user.email) {
+        throw new Error('User not found.');
+      }
+
+      user.lastConnection = new Date();
+      
+
+      return this.userRepository.updateLastConnection(email, user.lastConnection );
+
+    } catch (e) {
+      throw new Error(`Error updating last connection: ${e.message}`);
+    }
+  }
 
 
 }

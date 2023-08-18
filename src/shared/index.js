@@ -28,3 +28,17 @@ export const generateTokenForgotPassword = async (user) =>
       resolve(token);
     });
 }
+
+export const logutToken = async (user) =>
+{
+  return new Promise((resolve, reject) =>
+  {
+    const token = jwt.sign({ user: { ...user, password: undefined } }, process.env.PRIVATE_KEY, { expiresIn: '0s' });
+    resolve(token);
+  });
+}
+
+export const verifyToken = async (token) =>
+{
+  return await jwt.verify(token, process.env.PRIVATE_KEY)
+}

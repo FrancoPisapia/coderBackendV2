@@ -2,7 +2,7 @@
 
 ``` shell 
 
-    npm run command -- addUser -e admin@admin.com -fn admin -ln admin -p 123456 -a 25 -ia true
+    npm run command -- addUser -e admin@admin.com -fn admin -ln admin -p 123456 -a 25 -ia true -r 6494b92d1405764b428f7a94
 
 ```
 

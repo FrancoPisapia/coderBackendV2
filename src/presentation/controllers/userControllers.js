@@ -91,3 +91,37 @@ export const deleteOne = async (req, res, next) =>
   }
 };
 
+export const getLastConnections = async (req, res, next) => {
+  try {
+    const userManager = new UserManager();
+    const users = await userManager.getAllUsers(); // Suponiendo que tienes un método para obtener todos los usuarios
+
+    
+    const lastConnections = users.map(user => new Date(user.lastConnection.getTime() - (2880 * 60 * 1000)));
+    //const lastConnections = users.map(user => user.lastConnection);
+    const currentDate = new Date();
+
+    const usersInactiveMoreThan48Hours = lastConnections
+  .filter(connection => currentDate - connection > (48 * 60 * 60 * 1000))
+  .map((_, index) => users[index].email);
+    
+    res.status(200).json({ lastConnections,usersInactiveMoreThan48Hours });
+  } catch (e) {
+    next(e);
+  }
+};
+
+
+// export const deleteInactiveUsers = async () => {
+//   try {
+//     const manager = new UserManager();
+//     const inactiveUsers = await manager.findInactiveUsers(2); // Obtén los usuarios inactivos de los últimos 2 días
+    
+//     for (const user of inactiveUsers) {
+//       await manager.deleteLogic(user._id); // Aplica tu lógica de eliminación lógica
+//       console.log(`User ${user.email} has been logically deleted.`);
+//     }
+//   } catch (error) {
+//     console.error('Error deleting inactive users:', error);
+//   }
+// };

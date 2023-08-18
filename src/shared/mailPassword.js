@@ -17,7 +17,7 @@ export const sendMailPassword = async (purchaser,token) =>
     })
 
     const mail = {
-        from: 'franco.pisapia405@gmail.com',
+        from: process.env.SMTP_MAIL,
         to: purchaser,
         subjetc: 'Cambio de contraseña',
         html:`
@@ -31,8 +31,7 @@ export const sendMailPassword = async (purchaser,token) =>
         </div>
         <p>Esta es su token para el cambio de contraseña  ${token} </p>
         <p>Si recibio este mail y no solicitó el cambio de contraseña cambiarla</p>
-      </div>
-        `
+      </div>`
     }
 
     return await transporter.sendMail(mail)

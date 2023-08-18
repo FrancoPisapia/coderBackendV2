@@ -10,6 +10,10 @@ export const login = async  (req, res, next) =>
   {
     const { email, password } = req.body;
     const manager = new SessionManager();
+
+    await manager.updateLastConnection(email)
+
+    
     const accessToken = await manager.login(email, password);
 
     logger?.info(`User ${email} logged in successfully`);
@@ -69,11 +73,11 @@ export const forgotPassword = async (req, res, next) => {
 
 export const changePassword = async (req, res, next) => {
   try {
-    const { email, password } = req.body;
+    const { email, password,tokenFromBody } = req.body;
 
     
       const manager = new SessionManager();
-      const result = await manager.changePassword(email, password);
+      const result = await manager.changePassword(email, password,tokenFromBody);
 
       logger?.info(`Password changed successfully for user ${email}`);
 
@@ -85,6 +89,7 @@ export const changePassword = async (req, res, next) => {
     next(e);
   }
 };
+
 
 
 
