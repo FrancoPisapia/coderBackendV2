@@ -1,7 +1,7 @@
-import TicketManager from "../../domain/managers/ticketManager.js";
-import { developmentLogger } from "../../shared/logger.js"
+import TicketManager from '../../domain/managers/ticketManager.js';
+import { developmentLogger } from '../../shared/logger.js';
 
-const logger = process.env.NODE_ENV === 'production' ? null : developmentLogger
+const logger = process.env.NODE_ENV === 'production' ? null : developmentLogger;
 class TicketController
 {
     static list = async (req,res)=>{

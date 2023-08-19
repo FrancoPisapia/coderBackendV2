@@ -1,8 +1,4 @@
-// import CartMongooseDao from "../../data/repositories/mongoose/cartsMongooseDao.js";
-// import ProductMongooseDao from '../../data/repositories/mongoose/productsMongooseDao.js';
-
 import idValidation from '../validations/share/idValidation.js';
-
 import cartUpdateValidation from '../validations/cart/cartUpdateValidation.js';
 import idValidationCartProduct from '../validations/cart/idValidationCart-Products.js';
 import cartModifyQuantityValidation from '../validations/cart/cartModifyQuantity.js';

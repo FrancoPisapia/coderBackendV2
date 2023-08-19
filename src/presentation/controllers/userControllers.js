@@ -1,7 +1,7 @@
-import UserManager from "../../domain/managers/userManager.js";
-import { developmentLogger } from "../../shared/logger.js"
+import UserManager from '../../domain/managers/userManager.js';
+import { developmentLogger } from '../../shared/logger.js';
 
-const logger = process.env.NODE_ENV === 'production' ? null : developmentLogger
+const logger = process.env.NODE_ENV === 'production' ? null : developmentLogger;
 
 export const list = async  (req, res, next) =>
 {
@@ -91,37 +91,44 @@ export const deleteOne = async (req, res, next) =>
   }
 };
 
-export const getLastConnections = async (req, res, next) => {
-  try {
+export const deleteInactiveUsers = async (req, res, next) => 
+{
+  try 
+  {
     const userManager = new UserManager();
-    const users = await userManager.getAllUsers(); // Suponiendo que tienes un método para obtener todos los usuarios
-
-    
-    const lastConnections = users.map(user => new Date(user.lastConnection.getTime() - (2880 * 60 * 1000)));
-    //const lastConnections = users.map(user => user.lastConnection);
+    const users = await userManager.getAllUsers();
+    const lastConnections = users.map(user => user.lastConnection);
     const currentDate = new Date();
 
     const usersInactiveMoreThan48Hours = lastConnections
   .filter(connection => currentDate - connection > (48 * 60 * 60 * 1000))
   .map((_, index) => users[index].email);
     
+  for (const email of usersInactiveMoreThan48Hours) 
+  {
+  try 
+  {
+    
+    const user = await userManager.getOneByEmail(email);
+    const userIdAsString = user.id.toString()
+    if (user) 
+    {
+      await userManager.deleteOne(userIdAsString);
+      logger?.info(`User deleted with email ${email}`);
+    }
+  } catch (e) 
+  
+  {
+    req.logger.error(`Error deleting user with email ${email}: ${e.message}`);
+  }
+
+}
     res.status(200).json({ lastConnections,usersInactiveMoreThan48Hours });
-  } catch (e) {
-    next(e);
+  } catch (e) 
+  {
+    console.error(`Error: ${e.message}`);
   }
 };
 
 
-// export const deleteInactiveUsers = async () => {
-//   try {
-//     const manager = new UserManager();
-//     const inactiveUsers = await manager.findInactiveUsers(2); // Obtén los usuarios inactivos de los últimos 2 días
-    
-//     for (const user of inactiveUsers) {
-//       await manager.deleteLogic(user._id); // Aplica tu lógica de eliminación lógica
-//       console.log(`User ${user.email} has been logically deleted.`);
-//     }
-//   } catch (error) {
-//     console.error('Error deleting inactive users:', error);
-//   }
-// };
+

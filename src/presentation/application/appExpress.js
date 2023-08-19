@@ -4,16 +4,15 @@ import swaggerJSDoc from 'swagger-jsdoc';
 import swaggerUiExpress from 'swagger-ui-express';
 import { swaggerOptions } from './swaggerOptions.js';
 import __dirname from '../../shared/direname.js'
-
 import productsRouter from '../routes/products.js'
 import cartsRouter from '../routes/carts.js';
 import userRouter from '../routes/userRouter.js';
 import roleRouter from '../routes//roleRouter.js';
 import routerSessions from '../routes/sessions.js';
 import emailRouter from '../routes/emailRouter.js';
-
 import errorHandler from '../middlewares/errorHandler.js';
 import { addLogger } from '../middlewares/logger.js';
+
 const specs = swaggerJSDoc(swaggerOptions)
 
 class AppExpress

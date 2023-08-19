@@ -1,6 +1,6 @@
-import CartManager from "../../domain/managers/cartsManager.js";
-import UserManager from "../../domain/managers/userManager.js";
-import { developmentLogger } from "../../shared/logger.js";
+import CartManager from '../../domain/managers/cartsManager.js';
+import UserManager from '../../domain/managers/userManager.js';
+import { developmentLogger } from '../../shared/logger.js';
 
 const logger = process.env.NODE_ENV === 'production' ? null : developmentLogger;
 

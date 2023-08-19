@@ -13,8 +13,8 @@ const userSchema = new mongoose.Schema({
       password: {type: Schema.Types.String,required: true},
       isAdmin: { type: Schema.Types.Boolean, default: false },
       role:{type:Schema.Types.ObjectId,index:true,ref:'roles', default: "6494b9ec1405764b428f7a97"},
-      lastConnection: { type: Schema.Types.Date, default: null }
-      //cart:{type:Schema.Types.ObjectId,index:true,ref:'carts'},
+      lastConnection: { type: Schema.Types.Date, default: new Date()}
+      
     });
 
 userSchema.plugin(paginate);
@@ -25,7 +25,7 @@ userSchema.pre('find', function () {
 
 userSchema.pre('findOne', function () {
   this.populate(['role'])
-  //this.populate(['cart'])
+  
 });
 
 

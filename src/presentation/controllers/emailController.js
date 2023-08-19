@@ -1,5 +1,5 @@
-import EmailManager from "../../domain/managers/emailManager.js";
-import { developmentLogger } from "../../shared/logger.js"
+import EmailManager from '../../domain/managers/emailManager.js';
+import { developmentLogger } from '../../shared/logger.js'
 
 const logger = process.env.NODE_ENV === 'production' ? null : developmentLogger;
 

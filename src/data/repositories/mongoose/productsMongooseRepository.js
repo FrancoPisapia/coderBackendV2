@@ -98,19 +98,3 @@ class ProductsMongooseRepository {
 }
 
 export default ProductsMongooseRepository;
-
-    // async addImageById(id,data)
-    // {
-    //     const productDocument = await productModel.findOneAndUpdate({ _id: id }, data, { new: true });
-
-
-    //     if(!productDocument){
-    //         throw new Error ("Product doesn't exist")
-    //     }
-
-    //     return {
-    //         thumbnail:productDocument.thumbnail
-    //     }
-    // }
-
-//export default ProductsMongooseRepository;

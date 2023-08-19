@@ -1,8 +1,7 @@
-import RoleManager from "../../domain/managers/roleManager.js";
+import RoleManager from '../../domain/managers/roleManager.js';
+import { developmentLogger } from '../../shared/logger.js';
 
-import { developmentLogger } from "../../shared/logger.js"
-
-const logger = process.env.NODE_ENV === 'production' ? null : developmentLogger
+const logger = process.env.NODE_ENV === 'production' ? null : developmentLogger;
 
 
 export const list = async  (req, res) =>

@@ -1,8 +1,8 @@
-import SessionManager from "../../domain/managers/sessionManager.js";
-import { sendMailPassword } from "../../shared/mailPassword.js";
-import { developmentLogger } from "../../shared/logger.js"
+import SessionManager from '../../domain/managers/sessionManager.js';
+import { sendMailPassword } from '../../shared/mailPassword.js';
+import { developmentLogger } from '../../shared/logger.js';
 
-const logger = process.env.NODE_ENV === 'production' ? null : developmentLogger
+const logger = process.env.NODE_ENV === 'production' ? null : developmentLogger;
 
 export const login = async  (req, res, next) =>
 {
@@ -29,9 +29,6 @@ export const login = async  (req, res, next) =>
 		next(e);
 	}
 };
-
-//     res.send({ accessToken, message: 'Login success!' });
-// };
 
 export const current = async  (req, res) =>
 {

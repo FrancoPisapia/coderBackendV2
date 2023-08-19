@@ -1,7 +1,7 @@
-import dotenv from "dotenv";
+import dotenv from 'dotenv';
 import { faker } from '@faker-js/faker';
-import DbFactory from "../data/factories/dbFactory.js";
-import chai from "chai";
+import DbFactory from '../data/factories/dbFactory.js';
+import chai from 'chai';
 
 dotenv.config();
 

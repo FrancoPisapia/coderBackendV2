@@ -1,10 +1,8 @@
 import dotenv from 'dotenv';
 dotenv.config();
-
-import { createContainer, asClass, Lifetime } from "awilix";
-
-import UserMongooseRepository from "./data/repositories/mongoose/userMongooseRepository.js";
-import RoleMongooseRepository from "./data/repositories/mongoose/roleMongooseRepository.js";
+import { createContainer, asClass, Lifetime } from 'awilix';
+import UserMongooseRepository from './data/repositories/mongoose/userMongooseRepository.js';
+import RoleMongooseRepository from './data/repositories/mongoose/roleMongooseRepository.js';
 import ProductsMongooseRepository from './data/repositories/mongoose/productsMongooseRepository.js'
 import CartsMongooseRepository from './data/repositories/mongoose/cartsMongooseRepository.js';
 import TicketsMongooseRepository from './data/repositories/mongoose/ticketsMongooseRepository.js';

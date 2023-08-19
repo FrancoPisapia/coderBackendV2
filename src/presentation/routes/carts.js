@@ -1,7 +1,4 @@
-//import {ProductManager,CartManager} from '../dao/fileSystem/Managers.js';
 import express from 'express'
-// import { cartModel } from '../dao/models/cartsModels.js';
-// import { productsModel } from '../dao/models/productsModels.js';
 import CartController, { addProduct, createOne, deleteOne, deleteOneProduct, getOne, modifyQuantity, update, } from '../controllers/cartControllers.js';
 import { purchaseCart } from '../controllers/ticketConstroller.js';
 import auth from '../middlewares/auth.js';

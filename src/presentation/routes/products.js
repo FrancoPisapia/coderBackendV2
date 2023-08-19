@@ -1,11 +1,8 @@
-//import {ProductManager} from '../dao/fileSystem/Managers.js';
 import express from 'express'
-//import uploader from '../utils/multer.js'
-//import { productsModel } from '../dao/models/productsModels.js';
 import { deleteOne, getOne, save, update, list} from '../controllers/productsControllers.js';
 import auth from '../middlewares/auth.js';
 import authorization from '../middlewares/authorizacion.js';
-// import uploader from '../../shared/multer.js';
+
 
 const app = express();
 const routerProduct = express.Router(); 

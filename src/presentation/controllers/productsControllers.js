@@ -1,21 +1,7 @@
-import ProductManager from "../../domain/managers/productsManager.js";
-import uploader from "../middlewares/multer.js";
-import { developmentLogger } from "../../shared/logger.js"
+import ProductManager from '../../domain/managers/productsManager.js';
+import { developmentLogger } from '../../shared/logger.js';
 
-const logger = process.env.NODE_ENV === 'production' ? null : developmentLogger
-
-// class ProductController
-// {
-//     static list = async (req,res)=>{
-
-//         const manager = new ProductManager();
-
-//         const products = await manager.find();
-
-//         res.send ({status:'succeed',products})
-//     }
-// }
-
+const logger = process.env.NODE_ENV === 'production' ? null : developmentLogger;
 
 export const list = async  (req, res, next) =>
 {
@@ -104,6 +90,7 @@ export const deleteOne = async (req,res,next) =>{
     const email = req.user.email
     const role = req.user.role
     const result = await manager.deleteOne(id,role,email);
+    
     logger?.info(`Product deleted with ID ${id}`);
     res.send({ status: 'success', result, message: 'Product deleted' });
 
@@ -113,19 +100,3 @@ export const deleteOne = async (req,res,next) =>{
         next (e)
     }
 }
-
-// export const addImageById = async (req,res)=>
-// {
-
-//     const {id} = req.params;
-
-//     const file = req.file;
-
-//     const manager = new ProductManager();
-
-//     const result = await manager.addImageById(id,'aaa') ;
-
-    
-// }
-
-//export default ProductController

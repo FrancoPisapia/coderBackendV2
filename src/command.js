@@ -3,14 +3,14 @@ import { program } from 'commander';
 import dotenv from 'dotenv';
 dotenv.config();
 
-import mongoose from "mongoose";
-import AddUser from "./presentation/commander/addUser.js";
+import mongoose from 'mongoose';
+import AddUser from './presentation/commander/addUser.js';
 
 void (async() =>
 {
   try
   {
-    await mongoose.connect('mongodb+srv://francopisapia405:uPTbiSDQYTlKc3wm@codercluster.xlmgp1b.mongodb.net/?retryWrites=true&w=majority', {
+    await mongoose.connect(process.env.MONGO_DB_URI, {
         useNewUrlParser: true,
         useUnifiedTopology: true
     });

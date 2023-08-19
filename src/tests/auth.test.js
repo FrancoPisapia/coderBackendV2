@@ -1,9 +1,8 @@
 import { faker } from '@faker-js/faker';
-import chai from "chai";
-import supertest from "supertest";
+import chai from 'chai';
+import supertest from 'supertest';
 import initServer from './index.js'
-
-import dotenv from "dotenv";
+import dotenv from 'dotenv';
 dotenv.config();
 
 const expect = chai.expect;
@@ -20,10 +19,6 @@ describe("Testing Auth Endpoints Success", () => {
     });
     after(function () {
         this.db.drop();
-        // await this.db.close();
-        // this.requester.app.close(() => {
-        //   console.log('Conexión cerrada');
-        // });
     });
     beforeEach(async function () {
         this.timeout(2000);

@@ -1,11 +1,10 @@
-import { faker } from '@faker-js/faker';
-import chai from "chai";
-import supertest from "supertest";
+import chai from 'chai';
+import supertest from 'supertest';
 import initServer from './index.js'
 import container from '../container.js'
 
 const expect = chai.expect;
-let jwt = "";
+let jwt = '';
 
 describe("Testing Auth Endpoints Success", () => {
     before(async function () {
