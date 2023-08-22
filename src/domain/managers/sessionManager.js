@@ -88,7 +88,6 @@ class SessionManager
 
     const decodedToken = await verifyToken(tokenFromBody)
 
-    console.log(decodedToken)
     if (decodedToken.user.email !== email) {
       throw new Error('Invalid or mismatched token');
     }

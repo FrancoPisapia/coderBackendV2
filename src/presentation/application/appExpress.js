@@ -29,10 +29,7 @@ class AppExpress
 
     build()
     {
-        this.app.use('/',(req,res) =>
-        {
-            res.send({msg:'Bienvenido a mi proyecto final'})
-        })
+
         this.app.use('/api/products', productsRouter);
         this.app.use('/api/carts', cartsRouter);
         this.app.use('/api/sessions', routerSessions);
@@ -59,7 +56,7 @@ class AppExpress
     {
         {
             const port = process.env.NODE_PORT || 4000
-            this.server = this.app.listen(port, process.env.HOST,() => {
+            this.server = this.app.listen(port,() => {
             console.log(`Server listening on port ${port}`);
             });
             
