@@ -54,9 +54,10 @@ class AppExpress
 
     listen()
     {
+        const port = process.env.NODE_PORT || 5000
         {
-            this.server = this.app.listen(process.env.NODE_PORT ,() => {
-            console.log(`Server listening on port ${process.env.NODE_PORT }`);
+            this.server = this.app.listen(port ,() => {
+            console.log(`Server listening on port ${port }`);
             });
             
             return this.server;
