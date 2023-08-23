@@ -30,6 +30,10 @@ class AppExpress
 
     build()
     {
+        this.app.use('/', (req,res)=>
+        {
+            res.send({msg:'Bienvenido a mi proyecto final! Para ingresar a la documentacion ingresar a https://projectfrancopisapia.up.railway.app/apidocs/'})
+        })
 
         this.app.use('/api/products', productsRouter);
         this.app.use('/api/carts', cartsRouter);
@@ -59,7 +63,7 @@ class AppExpress
         {
             this.server = this.app.listen(port,() => {
             console.log(`Server listening on port ${port}`);
-            console.log(__dirname)
+            
             });
             
             return this.server;
