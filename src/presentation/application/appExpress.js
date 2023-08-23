@@ -13,6 +13,7 @@ import emailRouter from '../routes/emailRouter.js';
 import errorHandler from '../middlewares/errorHandler.js';
 import { addLogger } from '../middlewares/logger.js';
 
+
 const specs = swaggerJSDoc(swaggerOptions)
 
 class AppExpress
@@ -56,8 +57,9 @@ class AppExpress
     {
         const port = process.env.PORT || 5000
         {
-            this.server = this.app.listen(port ,'0.0.0.0',() => {
-            console.log(`Server listening on port ${port }`);
+            this.server = this.app.listen(port,() => {
+            console.log(`Server listening on port ${port}`);
+            console.log(__dirname)
             });
             
             return this.server;
