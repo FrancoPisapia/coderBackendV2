@@ -12,6 +12,5 @@ userRouter.get('/:id', auth, authorization('getUser'), getOne);
 userRouter.post('/', save);
 userRouter.put('/:id', auth, authorization('updateUser'), update);
 userRouter.delete('/:id', auth, authorization('deleteUser'), deleteOne);
-userRouter.delete('/',deleteInactiveUsers)
 
 export default userRouter;
